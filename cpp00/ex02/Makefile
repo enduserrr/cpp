@@ -1,5 +1,5 @@
-NAME	= Phonebook
-SRC		= Contact.cpp PhoneBook.cpp
+NAME	= Account
+SRC		= Account.cpp tests.cpp
 OBJ_DIR	= obj
 OBJ		= $(SRC:.cpp=.o)
 INC		= incs -I
