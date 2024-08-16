@@ -14,8 +14,6 @@
 # define PHONEBOOK_HPP
 
 # include "Contact.hpp"
-# include <string>
-# include <cstdlib>
 # include <climits>
 # include <iomanip>
 

@@ -10,37 +10,43 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#define GREEN	"\033[92m"
-#define RED		"\033[91m"
-#define GREY	"\033[90m"
-#define RES		"\033[0m"
 #include "Account.hpp"
 #include <iostream>
 #include <ctime>
 #include <iomanip>
 
-/**
- * @brief	Member Functions: Operate on an instance of a class, having access to
- *			the instance specific data. Able to modify the state of the object
- *			they belong to.
- *			- Called on an instance of the class.
+#define GREEN	"\033[92m"
+#define RED		"\033[91m"
+#define GREY	"\033[90m"
+#define RES		"\033[0m"
 
- *			Static Member Functions: Operate on the class itself. Unable to access
- *			non-static member variables or the 'this' pointer as they aren't
- *			associated with any particular instance of the class. Able to access
- *			static memver vars shared accross all the class's instances.
- *			- Called on the class itself.
+/**
+ * @brief
+ * Member Functions: Operate on an instance of a class, having access to
+ * the instance specific data. Able to modify the state of the object
+ * they belong to.
+ * - Called on an instance of the class.
+ * * *
+ * Static Member Functions: Operate on the class itself. Unable to access
+ * non-static member variables or the 'this' pointer as they aren't
+ * associated with any particular instance of the class. Able to access
+ * static memver vars shared accross all the class's instances.
+ * - Called on the class itself.
+ * * *
+ * Static Data Members: variable which are shared among all instances of
+ * a given class
 */
 
+/* Static Data Members */
 int Account::_nbAccounts = 0;
 int Account::_totalAmount = 0;
 int Account::_totalNbDeposits = 0;
 int Account::_totalNbWithdrawals = 0;
 
-/* Constructor (empty input)*/
+/* Constructor */
 Account::Account( void ) {};
 
-/* Constructor, init vals and track the nb of accounts */
+/* Constructor */
 Account::Account(int initial_deposit)
 	: _nbDeposits(0), _nbWithdrawals(0), _amount(initial_deposit) {
 		Account::_totalAmount += _amount;
@@ -53,7 +59,7 @@ Account::Account(int initial_deposit)
 		<<std::endl;
 }
 
-/* Destructor for Account object, Cleans up when object destroyed */
+/* Destructor */
 Account::~Account( void ) {
     _displayTimestamp();
     std::cout
@@ -63,27 +69,27 @@ Account::~Account( void ) {
     << std::endl;
 }
 
-/* Static member function, total account nb */
+/* Static Member Function, total account nb */
 int Account::getNbAccounts( void ) {
     return (Account::_nbAccounts);
 }
 
-/* Static member functions,total money in an account */
+/* Static Member Function,total money in an account */
 int	Account::getTotalAmount( void ) {
     return (Account::_totalAmount);
 }
 
-/* Static member function */
+/* Static Member Function */
 int	Account::getNbDeposits( void ) {
 	return (Account::_totalNbDeposits);
 }
 
-/* Static member function */
+/* Static Member Function */
 int	Account::getNbWithdrawals( void ) {
 	return (Account::_totalNbWithdrawals);
 }
 
-/* Static member function */
+/* Static Member Function */
 void	Account::displayAccountsInfos( void )
 {
 	_displayTimestamp();
@@ -95,7 +101,7 @@ void	Account::displayAccountsInfos( void )
 	<< RES << std::endl;
 }
 
-/* Member function */
+/* Member Function */
 void	Account::makeDeposit(int deposit)
 {
 	_displayTimestamp();
@@ -113,7 +119,7 @@ void	Account::makeDeposit(int deposit)
 	<< std::endl;
 }
 
-/* Member function */
+/* Member Function */
 bool	Account::makeWithdrawal(int withdrawal) {
 	_displayTimestamp();
 	std::cout
@@ -139,14 +145,13 @@ bool	Account::makeWithdrawal(int withdrawal) {
 	}
 }
 
-/* Member function */
+/* Member Function */
 int		Account::checkAmount( void ) const {
 	return (this->_amount);
 }
 
-/* Member function */
-void	Account::displayStatus( void ) const
-{
+/* Member Function */
+void	Account::displayStatus( void ) const {
 	_displayTimestamp();
 	std::cout
 	<< "index:\t" << this->_accountIndex << ";"
@@ -156,9 +161,8 @@ void	Account::displayStatus( void ) const
 	<< std::endl;
 }
 
-/* Static member function */
-void	Account::_displayTimestamp( void )
-{
+/* Static Member Function */
+void	Account::_displayTimestamp( void ) {
 	time_t now = std::time(NULL);
 	struct tm timenow = *std::localtime(&now);
 

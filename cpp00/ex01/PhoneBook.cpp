@@ -12,9 +12,18 @@
 
 # include "PhoneBook.hpp"
 
+/**
+ * @brief	Global functions (non-static) are defined outside of any class.
+ *			Can be called from anywhere in the program without needing an
+ *			instance of any class. No access to any private or protected
+ *			members of any class unless an instance is explicitly passed into
+ *			one as a parameter.
+ */
 
+/* Constructor for the phonebook class */
 Phonebook::Phonebook(){_current = 0;_index = 0;};
 
+/* Global function */
 void    print_phonebook() {
     std::cout << "/* ************************************** */" << std::endl;
     std::cout << "/*                PHONEBOOK:              */" << std::endl;
@@ -24,6 +33,7 @@ void    print_phonebook() {
     std::cout << "/* ************************************** */" << std::endl;
 }
 
+/* Member function */
 void	Phonebook::add_contact() {
 	Contact tmp;
 
@@ -46,6 +56,7 @@ void	Phonebook::add_contact() {
 	std::cout << "NEW CONTACT ADDED" << std::endl;
 }
 
+/* Global function */
 std::string	resize(std::string content) {
 	if (content.length() > 10) {
 		content.erase(content.begin() + 9, content.end());
@@ -54,6 +65,7 @@ std::string	resize(std::string content) {
 	return (content);
 }
 
+/* Member function */
 void	Phonebook::print_phonebook_contacts() {
 	std::cout << WHITE
 	<< "|     #    |   NAME   |  SURNAME | NICKNAME |\n"
@@ -63,25 +75,27 @@ void	Phonebook::print_phonebook_contacts() {
 		<< "|" << std::setw(10) << i
 		<< "|" << std::setw(10) << resize(_contacts[i].get_name())
 		<< "|" << std::setw(10) << resize(_contacts[i].get_surname())
-		<< "|" << std::setw(10) << resize(_contacts[i].get_nickname()) << "|"
+		<< "|" << std::setw(10) << resize(_contacts[i].get_nickname())
+		<< "|"
 		<< std::endl;
 	}
 }
 
+/* Member function */
 void	Phonebook::search_contact() {
-	unsigned int index;
+	unsigned int i;
 
 	print_phonebook_contacts();
 	std::cout << "Enter index number: ";
-	std::cin >> index;
+	std::cin >> i;
 	if (std::cin.fail())
 		std::cout << "Invalid index number\n";
 	else {
-		if (index < this->_index) {
-			std::cout << "First Name: " << this->_contacts[index].get_name() << std::endl;
-			std::cout << "Last Name: " << this->_contacts[index].get_surname() << std::endl;
-			std::cout << "NickeName: " << this->_contacts[index].get_nickname() << std::endl;
-			std::cout << "Phone Number: " << this->_contacts[index].get_mobile() << std::endl;
+		if (i < this->_index) {
+			std::cout << "First Name: " << this->_contacts[i].get_name() << std::endl;
+			std::cout << "Surname: " << this->_contacts[i].get_surname() << std::endl;
+			std::cout << "Nickname: " << this->_contacts[i].get_nickname() << std::endl;
+			std::cout << "Mobile #: " << this->_contacts[i].get_mobile() << std::endl;
 		} else
 			std::cout << "Invalid index number\n";
 	}
@@ -89,6 +103,7 @@ void	Phonebook::search_contact() {
 	std::cin.ignore(INT_MAX, '\n');
 }
 
+/* Global function */
 int main() {
     Phonebook Phonebook;
     std::string command;
