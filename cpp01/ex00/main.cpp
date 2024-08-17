@@ -12,27 +12,25 @@
 
 #include "Zombie.hpp"
 
-int main() {
-    int nbr;
+Zombie	*newZombie(std::string Name);
+void	randomChump(std::string Name);
 
-    std::cout << "Enter a number of Zombies to create (int): ";
-    std::cin >> nbr;
-    std::cin.ignore();
-    if (std::cin.fail()) {
-        std::cout << "Incorrect input"
-        << std::endl;
-    } else {
-        std::string name[nbr];
-        for (int i = 0; i < nbr;) {
-            std::cout << "Name of the Zombie # "
-            << i + 1 << "/" << nbr << ": ";
-            getline(std::cin, name[i]);
-            i++;
-        }
-        std::cout
-        << "-----------------------------------------------------------"
-        << std::endl;
-        randomChump(name[rand() % nbr]);
-    }
-    return (0);
+int	main(void) {
+	std::cout << RED
+    << "Zombies (in stack)" << RES << std::endl;
+	Zombie	z1("Zombie_The_1st");
+	Zombie	z2("Zombie_The_2nd");
+	Zombie	z3("Zombie_The_3rd");
+	z1.announce();
+	z2.announce();
+	z3.announce();
+	randomChump("randomChump");
+	// std::cout << std::endl;
+	std::cout << RED
+    << "new Zombies (in heap)" << RES << std::endl;
+	Zombie	*new_z;
+	new_z = newZombie("new_Zombie");
+	new_z->announce();
+	delete(new_z);
+	return (0);
 }

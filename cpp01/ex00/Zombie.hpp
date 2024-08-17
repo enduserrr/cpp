@@ -16,19 +16,22 @@
 # include <iostream>
 # include <string>
 
+# define RED	"\033[1;91m"
+# define RES	"\033[0m"
+
 class Zombie
 {
-    private:
-        std::string _Name;
-    public:
-        Zombie();
-        ~Zombie(){};
-        void    announce( void );
-        std::string getname();
-        void    setname(std::string Name);
+	private:
+		std::string	_Name;
+
+	public:
+		Zombie();
+		Zombie(std::string Name);
+		~Zombie();
+		void	announce(void) const;
 };
 
-Zombie *newZombie(std::string name);
-void    randomChump(std::string name);
+Zombie	*newZombie(std::string Name);
+void	randomChump(std::string Name);
 
 #endif
