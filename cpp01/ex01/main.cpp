@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/15 08:42:30 by asalo             #+#    #+#             */
-/*   Updated: 2024/08/15 08:42:32 by asalo            ###   ########.fr       */
+/*   Created: 2024/08/15 08:42:08 by asalo             #+#    #+#             */
+/*   Updated: 2024/08/15 08:42:10 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ZOMBIE_HPP
-# define ZOMBIE_HPP
+#include "Zombie.hpp"
 
-# include <iostream>
-# include <string>
-
-# define RED	"\033[1;91m"
-# define RES	"\033[0m"
-
-class Zombie
+int main(void)
 {
-	private:
-		std::string	_name;
+	Zombie *horde;
+	int N = 3;
 
-	public:
-		Zombie();
-		Zombie(std::string name);
-		~Zombie(){};
-		void	announce(void) const;
-};
-
-Zombie* zombieHorde(int N, std::string name);
-
-#endif
+	horde = zombieHorde(N, "Zombie");
+ 	for (int i = 0; i < N; i++)
+	{
+       std::cout << "zombieHorde" << ": ";
+	   horde[i].announce();
+    }
+	delete[] horde;
+	return (0);
+}
