@@ -12,11 +12,24 @@
 
 #include "Zombie.hpp"
 
-Zombie::Zombie(){}
+Zombie::Zombie() {
+    name = "default";
+    std::cout << "Constructor call" << std:: endl;
+}
 
-Zombie::Zombie(std::string name)
-	: _name(name) {}
+void Zombie::setname(std::string n) {
+    name = n;
+}
 
-void	Zombie::announce(void) const {
-	std::cout << _name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+Zombie::Zombie(std::string n) {
+    name= n;
+    std::cout << "Constructor call" << std:: endl;
+}
+
+Zombie::~Zombie() {
+    std::cout << "Destructor call" << std:: endl;
+}
+
+void Zombie::announce() {
+    std::cout << name <<": BraiiiiiiinnnzzzZ..."<< std:: endl;
 }

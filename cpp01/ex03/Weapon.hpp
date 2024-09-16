@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Weapon.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/15 08:42:08 by asalo             #+#    #+#             */
-/*   Updated: 2024/08/15 08:42:10 by asalo            ###   ########.fr       */
+/*   Created: 2024/09/16 10:02:21 by asalo             #+#    #+#             */
+/*   Updated: 2024/09/16 10:02:24 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#ifndef WEAPON_H
+#define WEAPON_H
 
-int main() {
-    Zombie *Z;
-	int	N = 10;
+# include <iostream>
+# include <string>
 
-    Z = zombieHorde(N,"Zombie");
-    for (size_t i = 0; i < N; i++) {
-		std::cout << "Horde: " << i << "_";
-		Z[i].announce();
-    }
-    delete[] Z;
-}
+class Weapon
+{
+    private:
+        std::string type;
+    public:
+        Weapon(std::string a);
+        ~Weapon();
+        std:: string& getType();
+        void setType(std::string str);
+};
+
+#endif
