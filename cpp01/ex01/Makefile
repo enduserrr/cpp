@@ -1,4 +1,4 @@
-NAME	= Zombie
+NAME	= zombie
 SRC		= main.cpp zombieHorde.cpp Zombie.cpp
 OBJ_DIR	= obj
 OBJ		= $(SRC:.cpp=.o)

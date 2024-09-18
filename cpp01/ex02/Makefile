@@ -1,4 +1,4 @@
-NAME	= BRAIN
+NAME	= brain
 SRC		= main.cpp
 OBJ_DIR	= obj
 OBJ		= $(SRC:.cpp=.o)

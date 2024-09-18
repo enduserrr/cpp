@@ -15,23 +15,19 @@
 #include <fstream>
 
 static int open_files(std::string nameInputFile, std::string nameOutputfile,
-					std::ifstream *inputFile, std::ofstream *outputFile)
-{
+					std::ifstream *inputFile, std::ofstream *outputFile) {
 	(*inputFile).open(nameInputFile, std::fstream::in);
 	(*outputFile).open(nameOutputfile, std::fstream::out);
-	if (!inputFile || !outputFile)
-	{
+	if (!inputFile || !outputFile) {
         std::cerr << "Failed to open files!" << std::endl;
 		(*inputFile).close();
 		(*outputFile).close();
-
         return (1);
     }
 	return (0);
 }
 
-static void read_and_replace(char **argv, std::ifstream *inputFile, std::ofstream *outputFile)
-{
+static void read_and_replace(char **argv, std::ifstream *inputFile, std::ofstream *outputFile) {
 	std::string 			to_find;
 	std::string 			to_replace;
 	std::string 			line;
@@ -43,16 +39,13 @@ static void read_and_replace(char **argv, std::ifstream *inputFile, std::ofstrea
 	to_replace = *(argv + 3);
 	end_last_found = 0;
 
-	while(std::getline(*inputFile, line))
-	{
+	while(std::getline(*inputFile, line)) {
 
 		replaced_line.clear();
 		end_last_found = 0;
 		found = line.find(to_find);
-		if (found != std::string::npos)
-		{
-			while (found != std::string::npos)
-			{
+		if (found != std::string::npos) {
+			while (found != std::string::npos) {
 				replaced_line.append(line,end_last_found,found - end_last_found);
 				replaced_line += to_replace;
 				end_last_found = found + to_find.length();
@@ -70,8 +63,7 @@ static void read_and_replace(char **argv, std::ifstream *inputFile, std::ofstrea
 	}
 }
 
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv) {
 	std::string nameInputFile;
 	std::string nameOutputfile;
 	std::ifstream inputFile;

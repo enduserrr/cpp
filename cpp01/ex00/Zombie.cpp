@@ -12,13 +12,11 @@
 
 #include "Zombie.hpp"
 
-Zombie::Zombie()
-	: _Name("Zombie") {
+Zombie::Zombie() : _Name("Zombie") {
 	return ;
 }
 
-Zombie::Zombie(std::string name)
-	: _Name(name) {
+Zombie::Zombie(std::string name) : _Name(name) {
 	return ;
 }
 
