@@ -12,8 +12,8 @@
 
 #include "Zombie.hpp"
 
-Zombie	*newZombie(std::string Name);
-void	randomChump(std::string Name);
+Zombie	*newZombie(std::string name);
+void	randomChump(std::string name);
 
 int	main(void) {
 	std::cout << RED << "Zombies (in stack)" << RES << std::endl;
@@ -29,10 +29,10 @@ int	main(void) {
 	// std::cout << std::endl;t
 
 	std::cout << RED << "new Zombies (in heap)" << RES << std::endl;
-	Zombie	*new_z;
-	new_z = newZombie("new_Zombie");
-	new_z->announce();
-	delete(new_z);
+	Zombie	*newZ;
+	newZ = newZombie("newZombie");
+	newZ->announce();
+	delete(newZ);
 
 	return (0);
 }

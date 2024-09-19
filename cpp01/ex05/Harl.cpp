@@ -12,11 +12,9 @@
 
 #include "Harl.hpp"
 
-// Harl::Harl() {
-// }
+Harl::Harl() {}
 
-// Harl::~Harl() {
-// }
+Harl::~Harl() {}
 
 void    Harl::_debug( void ) {
     std::cout << WB << "\n[ DEBUG ]" << RES << std::endl;

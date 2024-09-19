@@ -24,6 +24,6 @@ std::string& Weapon::getType() {
     return(t);
 }
 
-void Weapon::setType(std::string  str) {
+void Weapon::setType(std::string str) {
   this->type = str;
 }

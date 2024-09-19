@@ -12,18 +12,18 @@
 
 #include "Zombie.hpp"
 
-Zombie::Zombie() : _Name("Zombie") {
+Zombie::Zombie() : name("Zombie") {
 	return ;
 }
 
-Zombie::Zombie(std::string name) : _Name(name) {
+Zombie::Zombie(std::string name) : name(name) {
 	return ;
 }
 
 Zombie::~Zombie() {
-	std::cout << _Name << " is dead" << std::endl;
+	std::cout << name << " is dead" << std::endl;
 }
 
 void	Zombie::announce(void) const {
-	std::cout << _Name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+	std::cout << name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }

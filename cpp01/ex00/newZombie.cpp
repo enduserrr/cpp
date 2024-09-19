@@ -12,7 +12,7 @@
 
 #include "Zombie.hpp"
 
-Zombie	*newZombie(std::string Name) {
-	Zombie	*new_z = new Zombie(Name);
-	return (new_z);
+Zombie	*newZombie(std::string name) {
+	Zombie	*newZ = new Zombie(name);
+	return (newZ);
 }

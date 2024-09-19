@@ -13,8 +13,14 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+/**
+ * @brief	ifstream:	Input file stream allows reading the file contents.
+ *			ofstream:	Output file stream allows writing to a file.
+ *			fstrean:	File stream allows both read and write as default but
+ *						can behave like ifstream or ofstream with flags.
+ */
 
-static int open_files(std::string nameInputFile, std::string nameOutputfile,
+static int openFiles(std::string nameInputFile, std::string nameOutputfile,
 					std::ifstream *inputFile, std::ofstream *outputFile) {
 	(*inputFile).open(nameInputFile, std::fstream::in);
 	(*outputFile).open(nameOutputfile, std::fstream::out);
@@ -27,7 +33,7 @@ static int open_files(std::string nameInputFile, std::string nameOutputfile,
 	return (0);
 }
 
-static void read_and_replace(char **argv, std::ifstream *inputFile, std::ofstream *outputFile) {
+static void replaceLine(char **argv, std::ifstream *inputFile, std::ofstream *outputFile) {
 	std::string 			to_find;
 	std::string 			to_replace;
 	std::string 			line;
@@ -73,9 +79,9 @@ int main(int argc, char **argv) {
 		return (std::cout << "incorrect argument count" << std::endl, 0);
 	nameInputFile = argv[1];
 	nameOutputfile = nameOutputfile + argv[1] + ".replace";
-	if (open_files(nameInputFile, nameOutputfile, &inputFile, &outputFile))
+	if (openFiles(nameInputFile, nameOutputfile, &inputFile, &outputFile))
 		return (1);
-	read_and_replace(argv, &inputFile, &outputFile);
+	replaceLine(argv, &inputFile, &outputFile);
 	inputFile.close();
 	outputFile.close();
 	return (0);

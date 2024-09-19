@@ -19,7 +19,7 @@ class HumanB
 {
     private:
         std:: string name;
-        Weapon*      W;
+        Weapon*      weapon;
     public :
         HumanB(std:: string  n);
         void attack();

@@ -15,7 +15,10 @@
 #define RES   "\033[0m"
 
 /**
- * @brief   Reference is
+ * @brief   strPtr: pointing to the str.
+ *          strRef: referencing the str.
+ *          REF is an alias for a given var (like a static pointer) and
+ *          unlike pointer it can't be re-assigned.
  */
 
 int main() {
