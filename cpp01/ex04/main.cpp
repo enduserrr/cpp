@@ -77,6 +77,8 @@ int main(int argc, char **argv) {
 
 	if (argc != 4)
 		return (std::cout << "incorrect argument count" << std::endl, 0);
+	if (!argv[2] || argv[2][0] == '\0')
+		return (std::cout << "cannot replace nothing" << std::endl, 0);
 	nameInputFile = argv[1];
 	nameOutputfile = nameOutputfile + argv[1] + ".replace";
 	if (openFiles(nameInputFile, nameOutputfile, &inputFile, &outputFile))
