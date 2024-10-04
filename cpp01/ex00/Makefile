@@ -2,7 +2,7 @@ NAME	= zombie
 SRC		= main.cpp newZombie.cpp randomChump.cpp Zombie.cpp
 OBJ_DIR	= obj
 OBJ		= $(SRC:.cpp=.o)
-INC		= incs -I
+INC		= Zombie.hpp
 CC		= c++
 RM		= rm -fr
 FLAGS	= -Wall -Wextra -Werror -std=c++11
@@ -22,6 +22,6 @@ clean:
 fclean: clean
 	$(RM) $(NAME)
 
-re: fclean $(NAME)
+re: fclean all
 
 .PHONY: all clean fclean re

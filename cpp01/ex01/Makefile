@@ -2,7 +2,7 @@ NAME	= zombie
 SRC		= main.cpp zombieHorde.cpp Zombie.cpp
 OBJ_DIR	= obj
 OBJ		= $(SRC:.cpp=.o)
-INC		= incs -I
+INC		= Zombie.hpp
 CC		= c++
 RM		= rm -fr
 FLAGS	= -Wall -Wextra -Werror -std=c++11
