@@ -21,7 +21,8 @@
  *          unlike pointer it can't be re-assigned.
  */
 
-int main() {
+int main()
+{
     std::string str;
     str = "HI THIS IS BRAIN";
 

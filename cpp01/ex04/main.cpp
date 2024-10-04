@@ -21,7 +21,8 @@
  */
 
 static int openFiles(std::string nameInputFile, std::string nameOutputfile,
-					std::ifstream *inputFile, std::ofstream *outputFile) {
+					std::ifstream *inputFile, std::ofstream *outputFile)
+{
 	(*inputFile).open(nameInputFile, std::fstream::in);
 	(*outputFile).open(nameOutputfile, std::fstream::out);
 	if (!inputFile || !outputFile) {
@@ -33,7 +34,8 @@ static int openFiles(std::string nameInputFile, std::string nameOutputfile,
 	return (0);
 }
 
-static void replaceLine(char **argv, std::ifstream *inputFile, std::ofstream *outputFile) {
+static void replaceLine(char **argv, std::ifstream *inputFile, std::ofstream *outputFile)
+{
 	std::string 			to_find;
 	std::string 			to_replace;
 	std::string 			line;
@@ -44,9 +46,7 @@ static void replaceLine(char **argv, std::ifstream *inputFile, std::ofstream *ou
 	to_find = *(argv + 2);
 	to_replace = *(argv + 3);
 	end_last_found = 0;
-
 	while(std::getline(*inputFile, line)) {
-
 		replaced_line.clear();
 		end_last_found = 0;
 		found = line.find(to_find);
@@ -69,7 +69,8 @@ static void replaceLine(char **argv, std::ifstream *inputFile, std::ofstream *ou
 	}
 }
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv)
+{
 	std::string nameInputFile;
 	std::string nameOutputfile;
 	std::ifstream inputFile;

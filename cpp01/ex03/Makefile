@@ -3,7 +3,7 @@ SRC		= main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
 OBJ_DIR	= obj
 OBJ		= $(SRC:.cpp=.o)
 INC		= incs -I
-CC		= g++
+CC		= c++
 RM		= rm -fr
 FLAGS	= -Wall -Wextra -Werror -std=c++11
 

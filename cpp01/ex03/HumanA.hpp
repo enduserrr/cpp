@@ -18,11 +18,11 @@
 class HumanA
 {
     private:
-        std::string name;
-        Weapon& weapon;
+        std::string _name;
+        Weapon      &_weapon;
     public:
-        HumanA(std::string n ,Weapon& weapon);
-        void attack();
+        HumanA(std::string n ,Weapon &_weapon);
+        void Attack();
 };
 
 #endif

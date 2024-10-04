@@ -15,23 +15,22 @@
 Zombie	*newZombie(std::string name);
 void	randomChump(std::string name);
 
-int	main(void) {
+int	main(void)
+{
 	std::cout << RED << "Zombies (in stack)" << RES << std::endl;
 	Zombie	z1("Zombie_The_1st");
 	Zombie	z2("Zombie_The_2nd");
 	Zombie	z3("Zombie_The_3rd");
 
-	z1.announce();
-	z2.announce();
-	z3.announce();
+	z1.Announce();
+	z2.Announce();
+	z3.Announce();
 	randomChump("randomChump");
-
-	// std::cout << std::endl;t
 
 	std::cout << RED << "new Zombies (in heap)" << RES << std::endl;
 	Zombie	*newZ;
 	newZ = newZombie("newZombie");
-	newZ->announce();
+	newZ->Announce();
 	delete(newZ);
 
 	return (0);

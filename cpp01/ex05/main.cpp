@@ -12,11 +12,12 @@
 
 #include "Harl.hpp"
 
-int main() {
+int main()
+{
     Harl    Harl;
 
-    Harl.complain("debug");
-    Harl.complain("info");
-    Harl.complain("warning");
-    Harl.complain("error");
+    Harl.Complain("debug");
+    Harl.Complain("info");
+    Harl.Complain("warning");
+    Harl.Complain("error");
 }
