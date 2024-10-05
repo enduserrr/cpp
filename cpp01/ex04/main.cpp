@@ -24,14 +24,11 @@ static int	openFiles(std::string oldFileName, std::string newFileName,
 					std::ifstream *inFile, std::ofstream *outFile)
 {
     (*inFile).open(oldFileName, std::fstream::in);
-
     if (!(*inFile).is_open()) {
         std::cerr << "input file does not exist or cannot be opened" << std::endl;
         return (1);
     }
-
     (*outFile).open(newFileName, std::fstream::out);
-
 	if (!(*outFile).is_open()) {
         std::cerr << "unable to create or open output file" << std::endl;
         (*inFile).close();
@@ -57,7 +54,6 @@ static bool replaceLine(const std::string &line, const std::string &replace_this
     return (replaced_flag);
 }
 
-// Function to process the file, replacing lines and managing output
 static void processFile(char **av, std::ifstream *inFile, std::ofstream *outFile)
 {
     std::string replace_this = av[2];
