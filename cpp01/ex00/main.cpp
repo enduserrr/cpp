@@ -27,7 +27,7 @@ int	main(void)
 	z3.Announce();
 	randomChump("randomChump");
 
-	std::cout << RED << "new Zombies (in heap)" << RES << std::endl;
+	std::cout << RED << "New Zombie (in heap)" << RES << std::endl;
 	Zombie	*newZ;
 	newZ = newZombie("newZombie");
 	newZ->Announce();

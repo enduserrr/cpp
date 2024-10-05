@@ -20,72 +20,85 @@
  *						can behave like ifstream or ofstream with flags.
  */
 
-static int openFiles(std::string nameInputFile, std::string nameOutputfile,
-					std::ifstream *inputFile, std::ofstream *outputFile)
+static int	openFiles(std::string oldFileName, std::string newFileName,
+					std::ifstream *inFile, std::ofstream *outFile)
 {
-	(*inputFile).open(nameInputFile, std::fstream::in);
-	(*outputFile).open(nameOutputfile, std::fstream::out);
-	if (!inputFile || !outputFile) {
-        std::cerr << "Failed to open files!" << std::endl;
-		(*inputFile).close();
-		(*outputFile).close();
+    (*inFile).open(oldFileName, std::fstream::in);
+
+    if (!(*inFile).is_open()) {
+        std::cerr << "input file does not exist or cannot be opened" << std::endl;
         return (1);
     }
-	return (0);
+
+    (*outFile).open(newFileName, std::fstream::out);
+
+	if (!(*outFile).is_open()) {
+        std::cerr << "unable to create or open output file" << std::endl;
+        (*inFile).close();
+        return (1);
+    }
+    return (0);
 }
 
-static void replaceLine(char **argv, std::ifstream *inputFile, std::ofstream *outputFile)
+static bool replaceLine(const std::string &line, const std::string &replace_this,
+                        const std::string &replacement, std::string &newLine)
 {
-	std::string 			to_find;
-	std::string 			to_replace;
-	std::string 			line;
-	std::string::size_type	found;
-	size_t					end_last_found;
-	std::string				replaced_line;
+    std::string::size_type found = 0;
+    std::string::size_type last_position = 0;
+    bool replaced_flag = false;
 
-	to_find = *(argv + 2);
-	to_replace = *(argv + 3);
-	end_last_found = 0;
-	while(std::getline(*inputFile, line)) {
-		replaced_line.clear();
-		end_last_found = 0;
-		found = line.find(to_find);
-		if (found != std::string::npos) {
-			while (found != std::string::npos) {
-				replaced_line.append(line,end_last_found,found - end_last_found);
-				replaced_line += to_replace;
-				end_last_found = found + to_find.length();
-				found = line.find(to_find, end_last_found);
-				if (found == std::string::npos)
-					replaced_line.append(line, end_last_found,line.length());
-			}
-		}
-		else
-			replaced_line = line;
-		if (!(*inputFile).eof())
-			*outputFile << replaced_line << std::endl;
-		else
-			*outputFile << replaced_line;
-	}
+    while ((found = line.find(replace_this, last_position)) != std::string::npos) {
+        newLine.append(line, last_position, found - last_position);
+        newLine += replacement;
+        last_position = found + replace_this.length();
+        replaced_flag = true;
+    }
+    newLine.append(line, last_position, line.length() - last_position);
+    return (replaced_flag);
 }
 
-int main(int argc, char **argv)
+// Function to process the file, replacing lines and managing output
+static void processFile(char **av, std::ifstream *inFile, std::ofstream *outFile)
 {
-	std::string nameInputFile;
-	std::string nameOutputfile;
-	std::ifstream inputFile;
-	std::ofstream outputFile;
+    std::string replace_this = av[2];
+    std::string replacement = av[3];
+    std::string line;
+    bool replaced_flag = false;
 
-	if (argc != 4)
+    while (std::getline(*inFile, line)) {
+        std::string newLine;
+        if (replaceLine(line, replace_this, replacement, newLine)) {
+            replaced_flag = true;
+        }
+        *outFile << newLine << std::endl;
+    }
+
+    if (replaced_flag) {
+        std::cout << "done" << std::endl;
+    } else {
+        std::cout << "nothing to replace" << std::endl;
+        outFile->close();
+        std::remove(av[1]);
+    }
+}
+
+int main(int ac, char **av)
+{
+	std::string oldFileName;
+	std::string newFileName;
+	std::ifstream inFile;
+	std::ofstream outFile;
+
+	if (ac != 4)
 		return (std::cout << "incorrect argument count" << std::endl, 0);
-	if (!argv[2] || argv[2][0] == '\0')
-		return (std::cout << "cannot replace nothing" << std::endl, 0);
-	nameInputFile = argv[1];
-	nameOutputfile = nameOutputfile + argv[1] + ".replace";
-	if (openFiles(nameInputFile, nameOutputfile, &inputFile, &outputFile))
+	if (!av[1][0] || !av[2][0])
+		return (std::cout << "empty argument: unable to replace" << std::endl, 0);
+	oldFileName = av[1];
+	newFileName = newFileName + av[1] + ".replace";
+	if (openFiles(oldFileName, newFileName, &inFile, &outFile))
 		return (1);
-	replaceLine(argv, &inputFile, &outputFile);
-	inputFile.close();
-	outputFile.close();
+	processFile(av, &inFile, &outFile);
+	inFile.close();
+	outFile.close();
 	return (0);
 }
