@@ -13,27 +13,33 @@
 #ifndef FIXED_HPP
 # define FIXED_HPP
 
-#include <iostream>
+# include <iostream>
+# include <cmath>
 
-class Fixed
+# define GC     "\033[3;90m"
+# define WB     "\033[1;97m"
+# define RES    "\033[0m"
+
+class   Fixed
 {
     private:
-        int _fixed_point_number; /*private var names with "_"*/
-        static const int    _fract_bits_count;
+        int                 _rawBits;
+        static const int    _bits = 8;
     public:
         Fixed();
-        Fixed(const int number);
-        Fixed(const float number);
-        Fixed(const Fixed& other);
-        Fixed &operator = (const Fixed &other);
         ~Fixed();
+        Fixed(const Fixed &fixed);
+        Fixed(const int intNb);
+        Fixed(const float floatNb);
+
+        Fixed   &operator=(const Fixed &fixed2);
 
         int     getRawBits(void) const;
-        void    setRawBits(int const Raw); /*why const after data type*/
+        void    setRawBits(int const Raw);
         float   toFloat(void) const;
         int     toInt(void) const;
 };
 
-std::ostream &operator << (std::ostream &os, Fixed const &fixed);
+std::ostream    &operator<<(std::ostream &strm, Fixed const &fixed);
 
 #endif
