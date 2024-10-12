@@ -30,7 +30,7 @@ Fixed::Fixed(const Fixed &fixed)
 
 Fixed   &Fixed::operator=(const Fixed &fixed2)/*test const after fixed*/
 {
-    std::cout << GC << "Assignement operator call" << RES << std::endl;
+    std::cout << GC << "Assignment operator call" << RES << std::endl;
     this->setRawBits(fixed2.getRawBits());
 	return (*this);
 }
@@ -67,8 +67,8 @@ int Fixed::toInt(void) const
     return (this->_rawBits >> Fixed::_bits);
 }
 
-std::ostream    &operator<<(std::ostream &strm, Fixed const &fixed)
+std::ostream    &operator<<(std::ostream &stream, Fixed const &fixed)
 {
-    strm << fixed.toFloat();
-    return (strm);
+    stream << fixed.toFloat();
+    return (stream);
 }

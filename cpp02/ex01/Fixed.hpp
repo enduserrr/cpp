@@ -32,14 +32,14 @@ class   Fixed
         Fixed(const int intNb);
         Fixed(const float floatNb);
 
-        Fixed   &operator=(const Fixed &fixed2);
+        Fixed   &operator=(const Fixed &fixed);
 
         int     getRawBits(void) const;
-        void    setRawBits(int const Raw);
+        void    setRawBits(int const raw);
         float   toFloat(void) const;
         int     toInt(void) const;
 };
 
-std::ostream    &operator<<(std::ostream &strm, Fixed const &fixed);
+std::ostream    &operator<<(std::ostream &stream, Fixed const &fixed);
 
 #endif

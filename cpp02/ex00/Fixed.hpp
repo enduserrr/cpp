@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 11:24:29 by asalo             #+#    #+#             */
-/*   Updated: 2024/09/19 11:25:12 by asalo            ###   ########.fr       */
+/*   Updated: 2024/10/12 15:25:17 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,35 @@
 
 # include <iostream>
 
+# define GC     "\033[3;90m"
+# define RES    "\033[0m"
+
+/**
+ * @brief   Orthodox canonical class form consists of: default constructor,
+ *          copy construtor, assignment operator & destructor.
+ *
+ *          Copy constructor: creates a new object as a copy of an existing obejct.
+ *          (Creates and constructs a new instance of the class).
+ *
+ *          Assignment operator: copies the contents of already existing object
+ *          into another existing object (both are already constructed).
+*/
+
 class Fixed
 {
     private:
-        int                 fixedPointNbr;
-        static const int    fractBitCount;
+        int                 _rawBits;
+        static const int    _bits = 8;
 
     public:
         Fixed();
-        Fixed(const Fixed& other);
-        Fixed& operator=(const Fixed& other);
+        Fixed(const Fixed &fixed);
         ~Fixed();
 
-    int     getRawBits(void) const;
-    void    setRawBits(int const raw);
+        Fixed &operator=(const Fixed &fixed);
+
+        int     getRawBits(void) const;
+        void    setRawBits(int const raw);
 };
 
 #endif

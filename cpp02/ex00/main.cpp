@@ -6,13 +6,14 @@
 /*   By: asalo <asalo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 11:25:50 by asalo             #+#    #+#             */
-/*   Updated: 2024/09/19 11:41:17 by asalo            ###   ########.fr       */
+/*   Updated: 2024/10/12 15:25:35 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
-int main( void ) {
+int main(void)
+{
 	Fixed a;
 	Fixed b(a);
 	Fixed c;

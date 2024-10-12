@@ -17,12 +17,15 @@
 #include <cmath>
 
 # define GC     "\033[3;90m"
-# define WB     "\033[1;97m"
-# define GB     "\033[1;95m"
-# define BB     "\033[1;96m"
-# define YB     "\033[1;93m"
-# define RB     "\033[1;91m"
 # define RES    "\033[0m"
+
+/**
+ * @brief   Overloading an operator:
+ *
+ *          Comparison & arithmetic operators:
+ *
+ *          Static member funcs (min & max):
+*/
 
 class Fixed
 {
@@ -32,7 +35,7 @@ class Fixed
     public:
         Fixed();
         ~Fixed();
-        Fixed(const Fixed &f);
+        Fixed(const Fixed &fixed);
         Fixed(const int int_nb);
         Fixed(const float float_nb);
 
@@ -41,19 +44,19 @@ class Fixed
         float   toFloat(void) const;
         int     toInt(void) const;
 
-        Fixed   &operator=(Fixed const &f2);
+        Fixed   &operator=(Fixed const &fixed);
 
-        bool    operator>(Fixed const &f) const;
-        bool    operator<(Fixed const &f) const;
-        bool    operator>=(Fixed const &f) const;
-        bool    operator<=(Fixed const &f) const;
-        bool    operator==(Fixed const &f) const;
-        bool    operator!=(Fixed const &f) const;
+        bool    operator>(Fixed const &fixed) const;
+        bool    operator<(Fixed const &fixed) const;
+        bool    operator>=(Fixed const &fixed) const;
+        bool    operator<=(Fixed const &fixed) const;
+        bool    operator==(Fixed const &fixed) const;
+        bool    operator!=(Fixed const &fixed) const;
 
-        Fixed   operator+(Fixed const &f);
-        Fixed   operator-(Fixed const &f);
-        Fixed   operator*(Fixed const &f);
-        Fixed   operator/(Fixed const &f);
+        Fixed   operator+(Fixed const &fixed);
+        Fixed   operator-(Fixed const &fixed);
+        Fixed   operator*(Fixed const &fixed);
+        Fixed   operator/(Fixed const &fixed);
 
         Fixed   operator++();
         Fixed   operator++(int);
@@ -66,6 +69,6 @@ class Fixed
         static  Fixed &max(Fixed &a, Fixed &b);
 };
 
-std::ostream    &operator<<(std::ostream &stream, Fixed const &f);;
+std::ostream    &operator<<(std::ostream &stream, Fixed const &fixed);
 
 #endif
