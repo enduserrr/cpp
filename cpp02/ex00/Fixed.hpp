@@ -28,7 +28,6 @@
  *          Assignment operator: copies the contents of already existing object
  *          into another existing object (both are already constructed).
 */
-
 class Fixed
 {
     private:

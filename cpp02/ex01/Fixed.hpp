@@ -17,7 +17,6 @@
 # include <cmath>
 
 # define GC     "\033[3;90m"
-# define WB     "\033[1;97m"
 # define RES    "\033[0m"
 
 class   Fixed

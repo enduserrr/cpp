@@ -135,6 +135,10 @@ Fixed	Fixed::operator*(Fixed const &fixed)
 
 Fixed	Fixed::operator/(Fixed const &fixed)
 {
+	if (fixed.getRawBits() == 0){
+		std::cerr << "Can't divide by zero..." << std::endl;
+		return Fixed(0);
+	}
 	this->_rawBits = (this->toFloat() / fixed.toFloat()) * (1 << _bits);
 	return (*this);
 }
