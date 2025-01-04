@@ -15,15 +15,18 @@
 
 #include "ClapTrap.hpp"
 
-class FragTrap : public ClapTrap {
+class FragTrap : public ClapTrap
+{
 	private:
 		FragTrap();
 
 	public:
 		FragTrap(std::string name);
 		FragTrap(FragTrap &src);
-		FragTrap &operator=(ClapTrap &rhs);
-		void highFivesGuys(void);
+
+		FragTrap	&operator=(ClapTrap &rhs);/*rhs?*/
+
+		void	highFivesGuys( void );
 		~FragTrap();
 };
 

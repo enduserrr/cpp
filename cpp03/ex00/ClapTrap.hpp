@@ -15,8 +15,11 @@
 
 #include <iostream>
 
-# define RED	"\033[1;91m"
-# define RES	"\033[0m"
+# define GC     "\033[3;90m"
+# define WB     "\033[1;97m"
+# define GB     "\033[1;92m"
+# define RB     "\033[1;91m"
+# define RES    "\033[0m"
 
 class ClapTrap
 {
@@ -29,7 +32,7 @@ class ClapTrap
 	public:
 		ClapTrap( std::string name );
 		ClapTrap( ClapTrap &src ); // copy constructor
-		ClapTrap& operator=( ClapTrap &cop ); // copy operator
+		ClapTrap& operator=( ClapTrap &copy ); // copy operator
 		~ClapTrap( void );
 		void attack ( const std::string& target );
 		void takeDamage ( unsigned int amount );

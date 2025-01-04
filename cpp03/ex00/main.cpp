@@ -12,7 +12,8 @@
 
 #include "ClapTrap.hpp"
 
-int main() {
+int main()
+{
 	ClapTrap claptrap("Claptrap");
 	claptrap.attack("the foe");
 	claptrap.takeDamage(2);

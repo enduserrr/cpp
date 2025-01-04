@@ -16,12 +16,18 @@ ClapTrap::ClapTrap( std::string name ) {
 	this->name = name;
 	this->hitPoints = 10;
 	this->energyPoints = 10;
-	this->attackDamage = 0;
-	std::cout << "ClapTrap constructor call" << std::endl;
+	this->attackDamage = 10;
+	std::cout << GC
+	<< "============================================================="
+	<< RES << std::endl;
+	std::cout << GB << "ClapTrap constructor call" << RES << std::endl;
 }
 
 ClapTrap::~ClapTrap( void ) {
-	std::cout << "ClapTrap destructor call" << std::endl;
+	std::cout << RB << "ClapTrap destructor call" << RES << std::endl;
+	std::cout << GC
+	<< "=============================================================="
+	<< RES << std::endl;
 }
 
 ClapTrap::ClapTrap( ClapTrap &src ) {
@@ -31,15 +37,15 @@ ClapTrap::ClapTrap( ClapTrap &src ) {
 	this->attackDamage = src.attackDamage;
 }
 
-ClapTrap& ClapTrap::operator=( ClapTrap &cop ) {
-	this->name = cop.name;
-	this->hitPoints = cop.hitPoints;
-	this->energyPoints = cop.energyPoints;
-	this->attackDamage = cop.attackDamage;
+ClapTrap	&ClapTrap::operator=( ClapTrap &copy ) {
+	this->name = copy.name;
+	this->hitPoints = copy.hitPoints;
+	this->energyPoints = copy.energyPoints;
+	this->attackDamage = copy.attackDamage;
 	return (*this);
 }
 
-void ClapTrap::attack ( const std::string &target ) {
+void	ClapTrap::attack ( const std::string &target ) {
 	if (this->energyPoints > 0) {
 		this->energyPoints--;
 		std::cout << "ClapTrap " << this->name << " attacks " << target << ", causing " << this->attackDamage << " points of damage!" << std::endl;
@@ -48,7 +54,7 @@ void ClapTrap::attack ( const std::string &target ) {
 	}
 }
 
-void ClapTrap::takeDamage ( unsigned int amount ) {
+void	ClapTrap::takeDamage ( unsigned int amount ) {
 	if (this->energyPoints > 0) {
 		this->hitPoints -= amount;
 		this->energyPoints--;
@@ -58,7 +64,7 @@ void ClapTrap::takeDamage ( unsigned int amount ) {
 	}
 }
 
-void ClapTrap::beRepaired( unsigned int amount ) {
+void	ClapTrap::beRepaired( unsigned int amount ) {
 	if (this->energyPoints > 0) {
 		this->hitPoints += amount;
 		this->energyPoints--;

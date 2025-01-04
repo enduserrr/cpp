@@ -21,7 +21,8 @@
 # define RB     "\033[1;91m"
 # define RES    "\033[0m"
 
-class ClapTrap {
+class ClapTrap
+{
 	private:
 		std::string name;
 		int hitPoints;
@@ -29,21 +30,25 @@ class ClapTrap {
 		int attackDamage;
 
 	public:
-		ClapTrap( std::string name );
-		~ClapTrap( void );
-		ClapTrap( ClapTrap &src); // copy constructor
-		ClapTrap& operator=( ClapTrap &cop); // copy operator
-		void attack ( const std::string& target );
-		void takeDamage ( unsigned int amount );
-		void beRepaired ( unsigned int amount );
-		std::string getName( void );
-		void setName( std::string name );
-		int getHitPoints( void );
-		void setHitPoints( int hitPoints );
-		int getEnergyPoints( void );
-		void setEnergyPoints( int energyPoints );
-		int getAttackDamage( void );
-		void setAttackDamage( int attackDamage );
+		ClapTrap(std::string name);
+		~ClapTrap(void);
+		ClapTrap(ClapTrap &src); // copy constructor
+
+		ClapTrap	&operator=(ClapTrap &cop); // copy operator
+
+		void	attack (const std::string& target);
+		void	takeDamage (unsigned int amount);
+		void	beRepaired (unsigned int amount);
+
+		std::string getName(void);
+		void	setName(std::string name);
+
+		int	getHitPoints(void);
+		void	setHitPoints(int hitPoints);
+		int	getEnergyPoints(void);
+		void	setEnergyPoints(int energyPoints);
+		int	getAttackDamage(void);
+		void	setAttackDamage(int attackDamage);
 };
 
 #endif

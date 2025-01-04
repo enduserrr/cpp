@@ -1,32 +1,26 @@
-NAME	= cpp02
+NAME	= cpp03
 SRC		= main.cpp ClapTrap.cpp
-OBJ_DIR	= .obj
-OBJ		= $(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))
-INC		= ClapTrap.hpp
-CC		= c++
-RM		= rm -fr
+OBJ		= $(SRC:.cpp=.o)
 FLAGS	= -Wall -Wextra -Werror -std=c++11
 
 WHITE_B	= \33[1;97m
 RESET 	= \033[0m
 
+%.o: %.cpp
+	c++ $(FLAGS) -c $< -o $@
+
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@$(CC) $(FLAGS) $(OBJ) -o $(NAME)
+	c++ $(FLAGS) $(OBJ) -o $(NAME)
 	@echo "$(WHITE_B)BUILT SUCCESFULLY$(RESET)"
 
-$(OBJ_DIR)/%.o: %.cpp
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(FLAGS) -c $< -o $@
-
 clean:
-	$(RM) $(OBJ_DIR)
+	rm -fr $(OBJ)
 
 fclean: clean
-	$(RM) $(NAME)
+	rm -fr $(NAME)
 
-re: fclean all
+re: fclean $(NAME)
 
 .PHONY: all clean fclean re
-

@@ -15,17 +15,20 @@
 
 #include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap {
+class ScavTrap : public ClapTrap
+{
 	private:
 		ScavTrap();
 
 	public:
-		ScavTrap( std::string name );
+		ScavTrap(std::string name);
 		~ScavTrap( void );
-		ScavTrap( ScavTrap &src); // copy constructor
-		ScavTrap& operator=( ScavTrap &cop); // copy operator
-		void guardGate( void );
-		void attack ( const std::string& target );
+		ScavTrap(ScavTrap &src);
+
+		ScavTrap	&operator=(ScavTrap &cop);
+
+		void	guardGate( void );
+		void	attack (const std::string& target);
 };
 
 #endif
