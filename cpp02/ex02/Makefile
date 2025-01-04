@@ -1,26 +1,25 @@
-NAME	= fixed
+NAME	= cpp02
 SRC		= main.cpp Fixed.cpp
-OBJ_DIR	= obj
 OBJ		= $(SRC:.cpp=.o)
-INC		= Harl.hpp
-CC		= c++
-RM		= rm -fr
 FLAGS	= -Wall -Wextra -Werror -std=c++11
 
 WHITE_B	= \33[1;97m
 RESET 	= \033[0m
 
+%.o: %.cpp
+	c++ $(FLAGS) -c $< -o $@
+
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@$(CC) $(FLAGS) $(OBJ) -o $(NAME)
+	c++ $(FLAGS) $(OBJ) -o $(NAME)
 	@echo "$(WHITE_B)BUILT SUCCESFULLY$(RESET)"
 
 clean:
-	$(RM) $(OBJ)
+	rm -fr $(OBJ)
 
 fclean: clean
-	$(RM) $(NAME)
+	rm -fr $(NAME)
 
 re: fclean $(NAME)
 

@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/28 11:23:33 by asalo             #+#    #+#             */
-/*   Updated: 2024/12/28 11:24:12 by asalo            ###   ########.fr       */
+/*   Created: 2024/12/31 13:09:29 by asalo             #+#    #+#             */
+/*   Updated: 2024/12/31 13:09:30 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAVTRAP_HPP
-# define SCAVTRAP_HPP
+#ifndef WRONGCAT_HPP
+# define WRONGCAT_HPP
 
-#include "ClapTrap.hpp"
+#include <iostream>
+#include "WrongAnimal.hpp"
 
-class ScavTrap : virtual public ClapTrap{
-	private:
-		ScavTrap();
-	public:
-		ScavTrap( std::string name );
-		~ScavTrap( void );
-		ScavTrap( ScavTrap &src); // copy constructor
-		ScavTrap& operator=( ScavTrap &cop); // copy operator
-		void guardGate( void );
-		void attack ( const std::string& target );
+class WrongCat : virtual public WrongAnimal
+{
+    public:
+        WrongCat( void );
+        WrongCat(WrongCat const &copy);
+        ~WrongCat( void );
+        void    operator=(WrongCat const &cat);/*deep copy/copy assignement operator*/
+        void    makeSound( void ) const;
 };
 
 #endif

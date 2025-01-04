@@ -42,21 +42,20 @@ class Fixed
         /* MEMBER VARIABLES */
         int                 _rawBits;
         static const int    _bits = 8;
-    public:
-        /* CONSTRUCTORS */
-        Fixed();//Default
-        Fixed(const Fixed &fixed);//Copy
-        Fixed(const int int_nb);//Int based
-        Fixed(const float float_nb);//Float based
 
-        /*DESTRUCTOR*/
+    public:
+        /* CONSTRUCTORS & DESTRUCTOR*/
+        Fixed();
+        Fixed(const Fixed &fixed);
+        Fixed(const int int_nb);
+        Fixed(const float float_nb);
         ~Fixed();
 
         /* MEMBER FUNCTION/METHODS */
         int     getRawBits(void) const;
         void    setRawBits(int const raw);
-        float   toFloat(void) const;//Crash proofing
-        int     toInt(void) const;//Crash proofing
+        float   toFloat(void) const;
+        int     toInt(void) const;
 
         /* OVERLOADED OPERATORS: */
         Fixed   &operator=(Fixed const &fixed);//Copy Assignement

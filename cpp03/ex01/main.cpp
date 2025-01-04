@@ -10,4 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ScavTrap.hpp"
 
+int main() {
+	ScavTrap scavtrap("ScavanagergeTrap");
+	ScavTrap scav (scavtrap);
+	scavtrap.attack("a random enemy");
+	scavtrap.takeDamage(2);
+	scavtrap.beRepaired(2);
+	scavtrap.guardGate();
+
+	return 0;
+}
