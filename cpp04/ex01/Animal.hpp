@@ -27,6 +27,16 @@
  *
  *				=> The destructor should be declared as 'virtual'
  *				for deleting a pointer to a derived class.
+ *
+ *				To make a class un-instantiable at least one of the
+ *				member functions must be pure virtual.
+ *
+ *				Pure Virtual: A function declared with = 0 in a base class
+ *				that must be implemented by derived classes.
+ *
+ *				Un-instantiable Class: A class that can't be instantiated directly.
+ *				They are called abstract classes to implement all of it's pure virtual
+ *				functions (remains abstract as an object(an instance) can't be created).
  */
 
 class Animal
@@ -40,7 +50,7 @@ class Animal
 		Animal& operator=(const Animal &copy);
 		virtual ~Animal();
 
-	void makeSound() const;
+	virtual void makeSound() const = 0;/*pure virtual*/
 	std::string getType() const;
 	void setType(std::string);
 	void printAddress() const;

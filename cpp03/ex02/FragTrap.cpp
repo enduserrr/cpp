@@ -5,38 +5,59 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/28 11:26:32 by asalo             #+#    #+#             */
-/*   Updated: 2024/12/28 11:26:34 by asalo            ###   ########.fr       */
+/*   Created: 2025/01/07 12:42:20 by asalo             #+#    #+#             */
+/*   Updated: 2025/01/07 12:42:22 by asalo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FragTrap.hpp"
 
+FragTrap::FragTrap() : ClapTrap() {
+	std::cout << "FragTrap Constructed" << std::endl;
+    this->setHitpoints(100);
+    this->setEnergyPoints(100);
+    this->setAttackDamage(30);
+}
+
 FragTrap::FragTrap(std::string name) : ClapTrap(name) {
-	this->setName( name );
-	this->setHitPoints( 100 );
-	this->setEnergyPoints( 100 );
-	this->setAttackDamage( 30 );
-	std::cout << WB << "FragTrap " << GC << name << " constructed" << RES << std::endl;
-
+	std::cout << "FragTrap " << name << " Constructed" << std::endl;
+    this->setHitpoints(100);
+    this->setEnergyPoints(100);
+    this->setAttackDamage(30);
 }
 
-FragTrap::FragTrap(FragTrap &src) : ClapTrap(src) {
-	*this = src;
+FragTrap::FragTrap(const FragTrap &src) {
+    FragTrap::setHitpoints(src._hitPoints);
+    FragTrap::setEnergyPoints(src._energyPoints);
+    FragTrap::setAttackDamage(src._attackDamage);
 }
 
-FragTrap &FragTrap::operator=(ClapTrap &rhs) {
-	this->setName(rhs.getName());
-	this->setHitPoints(rhs.getHitPoints());
-	this->setEnergyPoints(rhs.getEnergyPoints());
-	this->setAttackDamage(rhs.getAttackDamage());
-	return (*this);
+FragTrap &FragTrap::operator=(const FragTrap &copy) {
+    std::cout << "FragTrap assignment operator call" << std::endl;
+    if (this != &copy) {
+        ClapTrap::operator=(copy);
+    }
+    return (*this);
 }
 
-void FragTrap::highFivesGuys(void) {
-	std::cout << WB << "FragTrap " << GC << this->getName() << " requests a high five!" << RES << std::endl;
+FragTrap:: ~FragTrap() {
+	std::cout << "FragTrap " << this->getName() << " destroyed" << std::endl;
 }
 
-FragTrap::~FragTrap() {
-	std::cout << WB << "FragTrap " << GC << this->getName() << " is destructed!" << RES << std::endl;
+void FragTrap:: Attack(std::string const &target) {
+    if (this->getHitpoints() == 0 || this->getEnergyPoints() == 0)
+    {
+        std::cout<< this->getName() << " can't attack" << std::endl;
+        return ;
+    }
+    std::cout<< this->getName() << " attacks " << target << " causing " << this->getAttackDamage() << " points of damage" << std::endl;
+    this->_energyPoints = this->_energyPoints - 1;
+}
+
+
+void FragTrap:: highFiveGuys() {
+    if (this->getHitpoints() == 0)
+        std::cout << "FragTrap " << this->getName() << " is dead and does nothing" << std::endl;
+    else
+        std::cout << "FragTrap " << this->getName() << " is giving a high five!!!!" << std::endl;
 }

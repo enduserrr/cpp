@@ -14,16 +14,37 @@
 # define CAT_HPP
 
 # include "Animal.hpp"
+# include "Brain.hpp"
+
+// class Cat : virtual public Animal
+// {
+// 	private:
+// 		Brain *_brain;
+
+// 	public:
+// 		Cat(void);
+// 		Cat(Cat const &copy);
+// 		~Cat(void);
+
+// 		void operator=(Cat const &cat);
+// 		void    makeSound() const;
+// 		void	setIdea(std::string idea);
+// 		std::string	getIdea(size_t i) const;
+// };
 
 class Cat : public Animal
 {
+	private:
+		Brain	*attribute;
+
 	public:
 		Cat();
-		Cat(Cat const &copy);
-		Cat& operator=(Cat const &copy);
+		Cat(const Cat &copy);
+		Cat& operator=(const Cat &copy);
 		~Cat();
 
-	virtual void	makeSound() const;
+	void makeSound() const;
+	Brain *getBrain() const;
 };
 
 #endif

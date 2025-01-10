@@ -1,7 +1,8 @@
 NAME	= cpp04
-SRC		= main.cpp Animal.cpp Dog.cpp Cat.cpp WrongCat.cpp WrongAnimal.cpp
+SRC		= main.cpp Animal.cpp Dog.cpp Cat.cpp Brain.cpp
 OBJ_DIR	= .obj
 OBJ		= $(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))
+INC		= Animal.hpp Dog.hpp Cat.hpp WrongAnimal.hpp WrongCat.hpp
 CC		= c++
 RM		= rm -fr
 FLAGS	= -Wall -Wextra -Werror -std=c++11

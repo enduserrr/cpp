@@ -15,28 +15,35 @@
 
 #include <iostream>
 
-# define GC     "\033[3;90m"
-# define WB     "\033[1;97m"
-# define GB     "\033[1;92m"
-# define RB     "\033[1;91m"
-# define RES    "\033[0m"
-
 class ClapTrap
 {
 	private:
-		std::string name;
-		int hitPoints;
-		int energyPoints;
-		int attackDamage;
+		std::string _name;
+		unsigned int _hitPoints;
+		unsigned int _energyPoints;
+		unsigned int _attackDamage;
 
 	public:
-		ClapTrap( std::string name );
-		ClapTrap( ClapTrap &src ); // copy constructor
-		ClapTrap& operator=( ClapTrap &copy ); // copy operator
-		~ClapTrap( void );
-		void attack ( const std::string& target );
-		void takeDamage ( unsigned int amount );
-		void beRepaired ( unsigned int amount );
+		ClapTrap();
+		ClapTrap(std::string name);
+		ClapTrap(const ClapTrap &src);
+		~ClapTrap();
+
+		ClapTrap &operator=(const ClapTrap &copy);
+
+		void	Attack (std::string const &target);
+		void	takeDamage (unsigned int amount);
+		void	beRepaired (unsigned int amount);
+
+		std::string getName();
+        unsigned int getHitpoints();
+        unsigned int getEnergyPoints();
+        unsigned int getAttackDamage();
+
+        void	setName(std::string name);
+        void	setHitpoints(unsigned int hitpoints);
+        void	setEnergyPoints(unsigned int energyPoints);
+        void	setAttackDamage(unsigned int attackDamage);
 };
 
 #endif

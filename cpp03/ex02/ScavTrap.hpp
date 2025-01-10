@@ -15,20 +15,26 @@
 
 #include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap
+/**
+ * @brief	Virtual inheritance ensures that a derived class inheriting from multiple
+ *			base classes, only one shared instance of a common base class is created.
+ *			Eliminates redundancy and ambiguity in accessing the base class
+ *			and ensures destructors are called correctly and only once.
+*/
+
+class ScavTrap: virtual public ClapTrap
 {
 	private:
-		ScavTrap();
 
 	public:
+		ScavTrap();
 		ScavTrap(std::string name);
-		~ScavTrap( void );
-		ScavTrap(ScavTrap &src);
+		ScavTrap(const ScavTrap&st);
+		ScavTrap &operator=(const ScavTrap &sv);
+		~ScavTrap();
 
-		ScavTrap	&operator=(ScavTrap &cop);
-
-		void	guardGate( void );
-		void	attack (const std::string& target);
+		void guardGate();
+		void Attack(std::string const & target);
 };
 
 #endif
