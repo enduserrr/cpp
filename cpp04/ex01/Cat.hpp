@@ -16,22 +16,6 @@
 # include "Animal.hpp"
 # include "Brain.hpp"
 
-// class Cat : virtual public Animal
-// {
-// 	private:
-// 		Brain *_brain;
-
-// 	public:
-// 		Cat(void);
-// 		Cat(Cat const &copy);
-// 		~Cat(void);
-
-// 		void operator=(Cat const &cat);
-// 		void    makeSound() const;
-// 		void	setIdea(std::string idea);
-// 		std::string	getIdea(size_t i) const;
-// };
-
 class Cat : public Animal
 {
 	private:
@@ -40,7 +24,7 @@ class Cat : public Animal
 	public:
 		Cat();
 		Cat(const Cat &copy);
-		Cat& operator=(const Cat &copy);
+		Cat &operator=(const Cat &copy);
 		~Cat();
 
 	void makeSound() const;

@@ -16,19 +16,6 @@
 # include <string>
 # include <iostream>
 
-/**
- * @brief	Member function makeSound is virtual allowing specific calls
- *			when making a call to makeSound with a pointer to base class.
- *
- * @attention	Avoid errors:
- *				Deleting an object of polymorphic class type ‘Animal’
- *				which has a non-virtual destructor may cause undefined behavior
- *				[-Werror=delete-non-virtual-dtor].
- *
- *				=> The destructor should be declared as 'virtual'
- *				for deleting a pointer to a derived class.
- */
-
 class Animal
 {
 	protected:
@@ -37,12 +24,11 @@ class Animal
 	public:
 		Animal();
 		Animal(const Animal &copy);
-		Animal& operator=(const Animal &copy);
+		Animal &operator=(const Animal &copy);
 		virtual ~Animal();
 
-	void makeSound() const;
+	virtual void makeSound() const;
 	std::string getType() const;
 	void setType(std::string);
-	void printAddress() const;
 };
 #endif

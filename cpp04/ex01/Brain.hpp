@@ -15,23 +15,20 @@
 
 # include <iostream>
 # include <string>
-# define BRAIN_NUMBER_IDEAS 100
-
-# define BRAIN_NUMBER_IDEAS 100
 
 class Brain
 {
 	private:
-		std::string	ideas[100];
+		std::string	_ideas[100];
 
 	public:
-		Brain( void );
-		Brain( const Brain & );
-		Brain& operator=( const Brain & );
-		~Brain( void );
+		Brain();
+		Brain(const Brain &copy);
+		Brain &operator=(const Brain &copy);
+		~Brain();
 
-	std::string const	*getIdeas( void ) const;
-	void				setIdeas( std::string );
+	std::string const *getIdeas() const;
+	void setIdeas(std::string);
 };
 
 #endif

@@ -12,16 +12,14 @@
 
 #include "Cat.hpp"
 
-Cat::Cat() : Animal()
-{
-	std::cout << "Cat Constructor call" << std::endl;
+Cat::Cat() : Animal() {
+	std::cout << "Cat created" << std::endl;
 	this->type = "Cat";
 	this->attribute = new Brain();
 }
 
-Cat::Cat(const Cat &copy) : Animal(copy)
-{
-	std::cout << "Cat copy Constructor call" << std::endl;
+Cat::Cat(const Cat &copy) : Animal(copy) {
+	std::cout << "Cat copy created" << std::endl;
 	attribute = new Brain(*copy.attribute);
 }
 
@@ -38,11 +36,11 @@ Cat& Cat::operator=(const Cat &copy) {
 
 Cat::~Cat() {
 	delete this->attribute;
-	std::cout << "Cat Destructor call" << std::endl;
+	std::cout << "Cat destroyed" << std::endl;
 }
 
 void Cat::makeSound() const {
-	std::cout << "MIU MAU!" << std::endl;
+	std::cout << "MIU MAU" << std::endl;
 }
 
 Brain* Cat::getBrain() const {

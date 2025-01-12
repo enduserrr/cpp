@@ -13,29 +13,37 @@
 #include "WrongAnimal.hpp"
 
 WrongAnimal::WrongAnimal() : type("WrongAnimal") {
-	std::cout << "WrongAnimal created!" << std::endl;
+	std::cout << "WrongAnimal Constructor call" << std::endl;
 }
 
 WrongAnimal::~WrongAnimal() {
-	std::cout << "WrongAnimal destroyed!" << std::endl;
+	std::cout << "WrongAnimal Destructor call" << std::endl;
 }
 
 WrongAnimal::WrongAnimal(const WrongAnimal &copy) {
-	std::cout << "WrongAnimal Copy called!" << std::endl;
+	std::cout << "WrongAnimal copy Constructor call" << std::endl;
 	*this = copy;
 }
 
-WrongAnimal& WrongAnimal::operator=(const WrongAnimal &copy) {
-	std::cout << "WrongAnimal Copy assigment called!" << std::endl;
+WrongAnimal &WrongAnimal::operator=(const WrongAnimal &copy) {
+	std::cout << "WrongAnimal copy Assigment Operator call" << std::endl;
 	if ( this != &copy)
 		this->type = copy.type;
 	return (*this);
 }
 
 void WrongAnimal::makeSound() const {
-	std::cout << "I am a Wrong animal!" << std::endl;
+	std::cout << "OOOOOEEEEEOEOEOEOEO" << std::endl;
 }
 
 std::string	WrongAnimal::getType() const {
 	return (this->type);
+}
+
+void WrongAnimal::setType(std::string str) {
+	this->type = str;
+}
+
+void WrongAnimal::printAddress() const {
+	std::cout << this << std::endl;
 }

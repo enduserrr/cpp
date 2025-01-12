@@ -14,13 +14,13 @@
 
 Cat::Cat() : Animal()
 {
-	std::cout << "Cat Constructor call" << std::endl;
+	std::cout << "Cat created" << std::endl;
 	this->type = "Cat";
 }
 
 Cat::Cat(const Cat &copy) : Animal(copy)
 {
-	std::cout << "Cat copy Constructor call" << std::endl;
+	std::cout << "Cat copy created" << std::endl;
 }
 
 Cat& Cat::operator=(const Cat &copy) {
@@ -32,9 +32,9 @@ Cat& Cat::operator=(const Cat &copy) {
 }
 
 Cat::~Cat() {
-	std::cout << "Cat Destructor call" << std::endl;
+	std::cout << "Cat destroyed" << std::endl;
 }
 
 void Cat::makeSound() const {
-	std::cout << "MIU MAU!" << std::endl;
+	std::cout << "MIU MAU" << std::endl;
 }

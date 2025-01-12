@@ -23,7 +23,7 @@ WrongCat::WrongCat(WrongCat const &copy) : WrongAnimal(copy) {
 }
 
 WrongCat &WrongCat::operator=(WrongCat const &copy) {
-	std::cout << "WrongCat copy Assigment operator call" << std::endl;
+	std::cout << "WrongCat copy Assigment Operator call" << std::endl;
 	if ( this != &copy)
 		this->type = copy.type;
 	return (*this);
@@ -34,5 +34,5 @@ WrongCat::~WrongCat() {
 }
 
 void WrongCat::makeSound() const {
-	std::cout << "invalid cat sounds" << std::endl;
+	std::cout << "SHHHHHHHHHHHHHHHHHHHHHH" << std::endl;
 }

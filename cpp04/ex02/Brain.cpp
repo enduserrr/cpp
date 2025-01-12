@@ -13,37 +13,45 @@
 #include "Brain.hpp"
 
 Brain::Brain() {
-	std::cout << "Brain created!" << std::endl;
-	this->setIdeas("");
+	std::cout << "Brain creation done" << std::endl;
+	for (int i = 0; i < 100; i++) {
+		this->setIdeas("");
+	}
 }
 
 Brain::~Brain() {
-	std::cout << "Brain destroyed!" << std::endl;
+	std::cout << "Brain destruction done" << std::endl;
 }
 
-Brain::Brain(const Brain &n) {
-	std::cout << "Brain Copy called!" << std::endl;
+Brain::Brain(const Brain &copy) {
+	std::cout << "Brain copy created" << std::endl;
 	for(int i = 0; i < 100 ; i++)
-		ideas[i] = n.ideas[i];
+		_ideas[i] = copy._ideas[i];
 }
 
-Brain &Brain::operator=(const Brain &n) {
-	std::cout << "Brain Copy assigment called!\n";
+Brain &Brain::operator=(const Brain &copy) {
+	std::cout << "Brain copy Assigment call" << std::endl;
 
-	if ( this != &n )
-		return *this;
+	if (this != &copy)
+		return (*this);
 	for(int i = 0; i < 100 ;i++)
-		this->ideas[i] = n.ideas[i];
-	return *this;
+		this->_ideas[i] = copy._ideas[i];
+	return (*this);
 }
 
 std::string const *Brain::getIdeas() const {
-    return ideas;
+    return (_ideas);
 }
 
 void Brain::setIdeas(std::string idea) {
     if (idea.empty())
-        idea = "zzzzzzz...zzzzzzz";
-    for (int i = 0; i < 100; i++)
-        ideas[i] = idea;
+        idea = "";
+    for (int i = 0; i < 100;) {
+		if (_ideas[i].empty()) {
+			_ideas[i] = idea;
+			return ;
+		} else {
+			i++;
+		}
+	}
 }

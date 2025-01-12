@@ -22,12 +22,14 @@ class WrongAnimal
 
 	public:
 		WrongAnimal();
-		WrongAnimal(WrongAnimal const &copy);
-		WrongAnimal& operator=(WrongAnimal const &copy);
+		WrongAnimal(const WrongAnimal &copy);
+		WrongAnimal &operator=(const WrongAnimal &copy);
 		virtual ~WrongAnimal();
 
-	void makeSound() const;
-	std::string	getType() const;
+	virtual void makeSound() const = 0;
+	std::string getType() const;
+	void setType(std::string);
+	void printAddress() const;
 };
 
 #endif

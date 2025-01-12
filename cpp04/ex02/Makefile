@@ -1,8 +1,7 @@
 NAME	= cpp04
-SRC		= main.cpp Animal.cpp Dog.cpp Cat.cpp Brain.cpp
+SRC		= main.cpp Animal.cpp Dog.cpp Cat.cpp Brain.cpp WrongAnimal.cpp WrongCat.cpp
 OBJ_DIR	= .obj
 OBJ		= $(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))
-INC		= Animal.hpp Dog.hpp Cat.hpp WrongAnimal.hpp WrongCat.hpp
 CC		= c++
 RM		= rm -fr
 FLAGS	= -Wall -Wextra -Werror -std=c++11
@@ -27,5 +26,9 @@ fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
+
+run: re
+	clear
+	./$(NAME)
 
 .PHONY: all clean fclean re

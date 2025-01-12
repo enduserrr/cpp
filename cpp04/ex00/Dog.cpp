@@ -14,13 +14,13 @@
 
 Dog::Dog() : Animal()
 {
-	std::cout << "Dog Constructor call" << std::endl;
+	std::cout << "Dog created" << std::endl;
 	this->type = "Dog";
 }
 
 Dog::Dog(const Dog &copy) : Animal(copy)
 {
-	std::cout << "Dog copy Constructor call" << std::endl;
+	std::cout << "Dog copy created" << std::endl;
 }
 
 Dog& Dog::operator=(const Dog &copy) {
@@ -32,7 +32,7 @@ Dog& Dog::operator=(const Dog &copy) {
 }
 
 Dog::~Dog() {
-	std::cout << "Dog Destructor call" << std::endl;
+	std::cout << "Dog destroyed" << std::endl;
 }
 
 void Dog::makeSound() const {
