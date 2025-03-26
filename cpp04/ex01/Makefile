@@ -5,6 +5,7 @@ OBJ		= $(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))
 CC		= c++
 RM		= rm -fr
 FLAGS	= -Wall -Wextra -Werror -std=c++11
+FSANITIZE = #-g3 -fsanitize=address
 
 WHITE_B	= \33[1;97m
 RESET 	= \033[0m
@@ -12,12 +13,12 @@ RESET 	= \033[0m
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
+	$(CC) $(FLAGS) $(FSANITIZE) $(OBJ) -o $(NAME)
 	@echo "$(WHITE_B)BUILT SUCCESFULLY$(RESET)"
 
 $(OBJ_DIR)/%.o: %.cpp
 	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(FLAGS) -c $< -o $@
+	@$(CC) $(FLAGS) $(FSANITIZE) -c $< -o $@
 
 clean:
 	$(RM) $(OBJ_DIR)
@@ -31,4 +32,4 @@ run: re
 	clear
 	./$(NAME)
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re run
