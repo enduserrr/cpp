@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 10:27:10 by asalo             #+#    #+#             */
-/*   Updated: 2025/03/26 11:03:50 by asalo            ###   ########.fr       */
+/*   Updated: 2025/04/06 18:23:18 by asalo            ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -18,26 +18,28 @@
 
 int main() {
     try {
-        Bureaucrat bob("Bob", 30); // Can sign and execute some forms
-        Bureaucrat lowGrade("LowGrade", 140); // Can sign Shrubbery but not execute
+        Bureaucrat bobby("Bobby", 30); // Able to sign and exec some forms
+        Bureaucrat lowGrade("LowGrade", 140); // Able to sign Shrubbery, not exec
 
         ShrubberyCreationForm shrub("Garden");
         RobotomyRequestForm robo("Target");
         PresidentialPardonForm pardon("Victim");
-
-        std::cout << bob << std::endl;
+        std::cout << bobby << std::endl;
         std::cout << shrub << std::endl;
         std::cout << robo << std::endl;
         std::cout << pardon << std::endl;
 
+        std::cout << std::endl;
         lowGrade.signForm(shrub);
-        bob.executeForm(shrub); //Bob's grade to low
+        bobby.executeForm(shrub);
 
-        bob.signForm(robo);
-        bob.executeForm(robo);
+        std::cout << std::endl;
+        bobby.signForm(robo);
+        bobby.executeForm(robo);
 
-        bob.signForm(pardon);
-        bob.executeForm(pardon);
+        std::cout << std::endl;
+        bobby.signForm(pardon);
+        bobby.executeForm(pardon);
 
     } catch (std::exception& e) {
         std::cerr << "Exception caught: " << e.what() << std::endl;

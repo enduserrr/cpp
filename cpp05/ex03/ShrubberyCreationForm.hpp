@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 11:01:20 by asalo             #+#    #+#             */
-/*   Updated: 2025/03/26 11:01:22 by asalo            ###   ########.fr       */
+/*   Updated: 2025/04/07 11:53:38 by asalo            ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -17,13 +17,14 @@
 
 class ShrubberyCreationForm : public AForm {
 public:
-    ShrubberyCreationForm(const std::string& target);
+    ShrubberyCreationForm(const std::string &target);
     ShrubberyCreationForm(const ShrubberyCreationForm &src);
     ~ShrubberyCreationForm();
 
     ShrubberyCreationForm &operator=(const ShrubberyCreationForm &src);
 
-    void execute(Bureaucrat const & executor) const;
+    void execute(Bureaucrat const &executor) const;
+    void action() const;
 };
 
 #endif

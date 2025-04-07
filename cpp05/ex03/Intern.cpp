@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 11:13:38 by asalo             #+#    #+#             */
-/*   Updated: 2025/03/26 11:14:12 by asalo            ###   ########.fr       */
+/*   Updated: 2025/04/07 12:02:18 by asalo            ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -16,44 +16,38 @@
 Intern::Intern() {}
 
 Intern::Intern(const Intern &src) {
-    (void)src;
+    *this = src;
 }
 
 Intern &Intern::operator=(const Intern &src) {
     (void)src;
-    return *this;
+	return *this;
 }
 
 Intern::~Intern() {}
 
-AForm* Intern::makeForm(const std::string& formName, const std::string& target) {
-    AForm* form = NULL;
-
-    std::string formTypes[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
-
-    int formIndex = -1;
+AForm* Intern::makeForm(const std::string &formName, const std::string &target) {
     for (int i = 0; i < 3; ++i) {
-        if (formName == formTypes[i]) {
-            formIndex = i;
-            break;
+        if (formName == _forms[i]) {
+            AForm* form = (this->*_makeForm[i])(target);
+            return form;
         }
     }
+    std::cout << "Error: Form name '" << formName << "' is not recognized." << std::endl;
+    return NULL;
+}
 
-    switch (formIndex) {
-        case 0:
-            form = new ShrubberyCreationForm(target);
-            break;
-        case 1:
-            form = new RobotomyRequestForm(target);
-            break;
-        case 2:
-            form = new PresidentialPardonForm(target);
-            break;
-        default:
-            std::cout << "Error: Form name '" << formName << "' is not recognized." << std::endl;
-            return NULL;
-    }
+AForm* Intern::makePresidentialPardonForm(std::string target) {
+    std::cout << "Intern creates " << target << " Presidential Pardon Form" << std::endl;
+    return new PresidentialPardonForm(target);
+}
 
-    std::cout << "Intern creates " << form->getName() << std::endl;
-    return form;
+AForm* Intern::makeRobotomyRequestForm(std::string target) {
+    std::cout << "Intern creates " << target << " Robotomy Form" << std::endl;
+    return new RobotomyRequestForm(target);
+}
+
+AForm* Intern::makeshrubberyCreationForm(std::string target) {
+    std::cout << "Intern creates " << target << " Shrubbery Form" << std::endl;
+    return new ShrubberyCreationForm(target);
 }

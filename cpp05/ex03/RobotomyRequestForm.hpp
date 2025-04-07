@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 11:02:04 by asalo             #+#    #+#             */
-/*   Updated: 2025/03/26 11:02:09 by asalo            ###   ########.fr       */
+/*   Updated: 2025/04/07 11:49:22 by asalo            ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -24,7 +24,8 @@ public:
 
     RobotomyRequestForm &operator=(const RobotomyRequestForm &src);
 
-    void execute(Bureaucrat const & executor) const;
+    void execute(Bureaucrat const &executor) const;
+    void action() const;
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 10:27:57 by asalo             #+#    #+#             */
-/*   Updated: 2025/03/26 10:28:11 by asalo            ###   ########.fr       */
+/*   Updated: 2025/04/06 17:39:31 by asalo            ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -16,21 +16,21 @@
 #include <iostream>
 #include <string>
 #include <stdexcept>
-#include "Bureaucrat.hpp"  // Include for interaction with Bureaucrat
+#include "Bureaucrat.hpp"
 
 class Bureaucrat; // Forward declaration
 
 class Form {
 
 private:
-    const std::string name;
-    bool isSigned;
-    const int gradeToSign;
-    const int gradeToExecute;
+    const std::string _name;
+    bool _isSigned;
+    const int _gradeToSign;
+    const int _gradeToExecute;
 
 public:
-    Form(); //default constructor
-    Form(const std::string& name, int gradeToSign, int gradeToExecute);
+    Form();
+    Form(const std::string &name, int gradeToSign, int gradeToExecute);
     Form(const Form &src);
     ~Form();
 
@@ -45,15 +45,15 @@ public:
 
     class GradeTooHighException : public std::exception {
     public:
-        const char* what() const throw();
+        const char *what() const throw();
     };
 
     class GradeTooLowException : public std::exception {
     public:
-        const char* what() const throw();
+        const char *what() const throw();
     };
 };
 
-std::ostream& operator<<(std::ostream& os, const Form& form);
+std::ostream &operator<<(std::ostream& outStream, const Form& form);
 
 #endif

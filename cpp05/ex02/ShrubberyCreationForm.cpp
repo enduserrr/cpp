@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 11:01:25 by asalo             #+#    #+#             */
-/*   Updated: 2025/03/26 11:01:42 by asalo            ###   ########.fr       */
+/*   Updated: 2025/04/07 11:59:00 by asalo            ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -19,8 +19,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target)
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &src) : AForm(src) {}
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &src) {
-    if (this != &src)
-	{
+    if (this != &src) {
         AForm::operator=(src);
 	}
     return *this;
@@ -28,14 +27,17 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {}
 
-void ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
+void ShrubberyCreationForm::execute(Bureaucrat const &executor) const {
     if (!getIsSigned()) {
         throw FormNotSignedException();
     }
     if (executor.getGrade() > getGradeToExecute()) {
         throw GradeTooLowException();
     }
+    action();
+}
 
+void ShrubberyCreationForm::action() const {
     std::ofstream outputFile(getTarget() + "_shrubbery");
     if (outputFile.is_open()) {
         outputFile << "       _-_" << std::endl;

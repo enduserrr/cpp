@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 11:02:04 by asalo             #+#    #+#             */
-/*   Updated: 2025/03/26 11:02:09 by asalo            ###   ########.fr       */
+/*   Updated: 2025/04/07 11:47:22 by asalo            ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -17,14 +17,15 @@
 #include <cstdlib> // For rand() and srand()
 
 class RobotomyRequestForm : public AForm {
-public:
-    RobotomyRequestForm(const std::string& target);
-    RobotomyRequestForm(const RobotomyRequestForm &src);
-    ~RobotomyRequestForm();
+    public:
+        RobotomyRequestForm(const std::string& target);
+        RobotomyRequestForm(const RobotomyRequestForm &src);
+        ~RobotomyRequestForm();
 
-    RobotomyRequestForm &operator=(const RobotomyRequestForm &src);
+        RobotomyRequestForm &operator=(const RobotomyRequestForm &src);
 
-    void execute(Bureaucrat const & executor) const;
-};
+        void execute(Bureaucrat const &executor) const;
+        void action() const;
+    };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 10:27:10 by asalo             #+#    #+#             */
-/*   Updated: 2025/03/26 10:50:53 by asalo            ###   ########.fr       */
+/*   Updated: 2025/04/06 17:51:19 by asalo            ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -16,36 +16,36 @@
 
 int main() {
     try {
-        Bureaucrat bob("Bob", 50);
+        Bureaucrat sir("Sir", 50);
         Form form1("Application", 60, 70); // Grade to sign: 60
         Form form2("Promotion", 40, 50);  // Grade to sign: 40
 
-        std::cout << bob << std::endl;
+        std::cout << sir << std::endl;
+        std::cout << form1 << std::endl;
+        std::cout << form2 << std::endl;
+        std::cout << std::endl;
+        sir.signForm(form1); // 50 is not high enough to sign
+        sir.signForm(form2); // 50 is high enough to sign
+        std::cout << std::endl;
         std::cout << form1 << std::endl;
         std::cout << form2 << std::endl;
 
-        bob.signForm(form1); // Bob's grade (50) is not high enough to sign form1 (60)
-        bob.signForm(form2); // Bob's grade (50) *is* high enough to sign form2 (40)
-
+        Bureaucrat bobby("Bobby", 30);
+        std::cout << bobby << std::endl;
+        bobby.signForm(form1); // 30 is high enough (60 is lower)
         std::cout << form1 << std::endl;
-        std::cout << form2 << std::endl;
-
-        Bureaucrat alice("Alice", 30);
-        std::cout << alice << std::endl;
-        alice.signForm(form1); // Alice's grade (30) *is* high enough to sign form1 (60)
-        std::cout << form1 << std::endl;
-
+        std::cout << std::endl;
         //Test grade too high
-        Form form3("grade to high", 0, 50);
+        Form form3("Invalid Form", 0, 50);
         std::cout << form3 << std::endl;
     } catch (std::exception& e) {
         std::cerr << "Exception caught: " << e.what() << std::endl;
     }
-
+    std::cout << std::endl;
     try {
-        Bureaucrat lowGrade("LowGrade", 150);
-        Form form4("test grade low", 149, 50);
-        lowGrade.signForm(form4);
+        Bureaucrat dummy("Dummy", 150);
+        Form form4("Impossible Form", 149, 50);
+        dummy.signForm(form4);
     } catch (std::exception& e) {
         std::cerr << "Exception caught: " << e.what() << std::endl;
     }
