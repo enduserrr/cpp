@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+         #
+#    By: asalo <asalo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/26 10:26:53 by asalo             #+#    #+#              #
-#    Updated: 2025/03/26 11:05:00 by asalo            ###   ########.fr        #
+#    Updated: 2025/04/13 11:00:58 by asalo            ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME = bureaucrat
 CC = g++
-CFLAGS = -Wall -Wextra -Werror -std=c++11
+CFLAGS = -Wall -Wextra -Werror -std=c++17
 SRCS = main.cpp Bureaucrat.cpp
 OBJS = $(SRCS:.cpp=.o)
 
