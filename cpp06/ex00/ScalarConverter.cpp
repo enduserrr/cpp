@@ -3,18 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
+/*   By: asalo <asalo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 18:09:58 by asalo             #+#    #+#             */
-/*   Updated: 2025/04/07 18:27:53 by asalo            ###   ########.fr       */
+/*   Updated: 2025/04/17 17:22:46 by asalo            ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "ScalarConverter.hpp"
-#include <iostream>
-#include <cstdlib>
-#include <limits>
-#include <cctype>
+
 
 ScalarConverter::ScalarConverter() {}
 
@@ -32,6 +29,7 @@ ScalarConverter::~ScalarConverter() {}
 bool ScalarConverter::isCharLiteral(const std::string &literal) {
     return (literal.length() == 3 && literal[0] == '\'' && literal[2] == '\'');
 }
+
 
 bool ScalarConverter::isPseudoLiteral(const std::string &literal) {
     return (literal == "-inf" || literal == "+inf" || literal == "nan" ||
@@ -84,20 +82,10 @@ void ScalarConverter::printDouble(double value, const std::string &literal) {
 void ScalarConverter::convert(const std::string &literal) {
     if (literal.empty()) {
         std::cout << "Error: empty input" << std::endl;
-        return;
+        return ;
     }
 
-    // Handle char literal
-    if (isCharLiteral(literal)) {
-        char c = literal[1];
-        std::cout << "char: '" << c << "'" << std::endl;
-        std::cout << "int: " << static_cast<int>(c) << std::endl;
-        std::cout << "float: " << static_cast<float>(c) << "f" << std::endl;
-        std::cout << "double: " << static_cast<double>(c) << std::endl;
-        return;
-    }
-
-    // Check if it's a pseudo literal first
+    // Check if it's a pseudo literal first. define better for int etc
     if (isPseudoLiteral(literal)) {
         double value = 0;
         if (literal == "-inf" || literal == "-inff")
@@ -111,7 +99,16 @@ void ScalarConverter::convert(const std::string &literal) {
         printInt(value);
         printFloat(static_cast<float>(value), literal);
         printDouble(value, literal);
-        return;
+        return ;
+    }
+
+    if (isCharLiteral(literal)) {
+        char c = literal[1];
+        std::cout << "char: '" << c << "'" << std::endl;
+        std::cout << "int: " << static_cast<int>(c) << std::endl;
+        std::cout << "float: " << static_cast<float>(c) << "f" << std::endl;
+        std::cout << "double: " << static_cast<double>(c) << std::endl;
+        return ;
     }
 
     // Convert string to double as base type
@@ -119,9 +116,9 @@ void ScalarConverter::convert(const std::string &literal) {
     double value = std::strtod(literal.c_str(), &end);
 
     // Check if conversion failed or if there's trailing characters (except 'f')
-    if (*end != '\0' && (*end != 'f' || *(end + 1) != '\0')) {
+    if (end == literal.c_str() || (*end != '\0' && (*end != 'f' || *(end + 1) != '\0'))) {
         std::cout << "Error: invalid input" << std::endl;
-        return;
+        return ;
     }
 
     printChar(value);

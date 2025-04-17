@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Serializer.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
+/*   By: asalo <asalo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 18:33:09 by asalo             #+#    #+#             */
-/*   Updated: 2025/04/07 18:55:09 by asalo            ###   ########.fr       */
+/*   Updated: 2025/04/15 10:35:52 by asalo            ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -22,13 +22,14 @@ class Serializer {
         Serializer(Serializer const& src);
         Serializer& operator=(Serializer const& src);
         ~Serializer();
+
     public:
-        typedef struct Data
-        {
+        typedef struct Data {
             std::string s1;
             int n;
             std::string s2;
         } Data;
+
         static uintptr_t serialize(Data* ptr);
         static Data* deserialize(uintptr_t raw);
 };

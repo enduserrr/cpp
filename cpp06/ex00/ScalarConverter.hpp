@@ -3,21 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
+/*   By: asalo <asalo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 18:10:00 by asalo             #+#    #+#             */
-/*   Updated: 2025/04/07 18:54:44 by asalo            ###   ########.fr       */
+/*   Updated: 2025/04/15 10:25:43 by asalo            ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #ifndef SCALARCONVERTER_HPP
 #define SCALARCONVERTER_HPP
 
-#include <string>
+#include <iostream>
+#include <cstdlib>
+#include <limits>
+#include <cctype>
 
 class  ScalarConverter {
     private:
         ScalarConverter();
+
         ScalarConverter(const ScalarConverter& src); //Copy
         ScalarConverter& operator=(const ScalarConverter& src); //Assignement operator
         ~ScalarConverter();

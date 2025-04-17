@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
+/*   By: asalo <asalo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 18:10:03 by asalo             #+#    #+#             */
-/*   Updated: 2025/04/07 18:57:23 by asalo            ###   ########.fr       */
+/*   Updated: 2025/04/15 10:36:05 by asalo            ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -19,7 +19,7 @@ int main() {
     original.n = 41;
     original.s2 = "World";
 
-    // Original values
+    // Original
     std::cout << "Original Data:" << std::endl;
     std::cout << "address: " << &original << std::endl;
     std::cout << "s1: " << original.s1 << std::endl;

@@ -1,7 +1,7 @@
-NAME = serializer
+NAME = identify
 CC = g++
 CFLAGS = -Wall -Wextra -Werror -std=c++20
-SRCS = main.cpp Serializer.cpp
+SRCS = main.cpp Base.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
