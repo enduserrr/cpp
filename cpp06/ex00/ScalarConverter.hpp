@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalo <asalo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 18:10:00 by asalo             #+#    #+#             */
-/*   Updated: 2025/04/15 10:25:43 by asalo            ###   ########.fr       */
+/*   Updated: 2025/04/18 19:46:05 by asalo            ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -22,13 +22,12 @@ class  ScalarConverter {
     private:
         ScalarConverter();
 
-        ScalarConverter(const ScalarConverter& src); //Copy
-        ScalarConverter& operator=(const ScalarConverter& src); //Assignement operator
+        ScalarConverter(const ScalarConverter& src);
+        ScalarConverter& operator=(const ScalarConverter& src);
         ~ScalarConverter();
 
     public:
         static void convert(const std::string& literal);
-
         static bool isCharLiteral(const std::string& literal);
         static bool isPseudoLiteral(const std::string& literal);
         static void printChar(double value);

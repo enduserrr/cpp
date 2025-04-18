@@ -26,9 +26,5 @@ Special values that represent infinity and not-a-number (NaN) for float and doub
 Demonstrates a way to treat memory address as a plain numerical value and convert it back to memory address.
 
 ## Ex02
-Dynamic type identification using polymorphism and dynamic_cast. t shows how you can have a pointer or reference to a base class (Base)
-but still determine the actual derived class (A, B, or C) of the object at runtime.
+Dynamic type identification using polymorphism and dynamic_cast. A pointer or reference to a base class object, determines the actual derived class type (A, B, C) of the object at runtime.
 
-Identifies type during runtime and using dynamic cast and function pointers.
-
-### Polymorphism = multiple ways through one interface

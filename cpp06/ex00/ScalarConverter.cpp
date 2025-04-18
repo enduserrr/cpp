@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalo <asalo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 18:09:58 by asalo             #+#    #+#             */
-/*   Updated: 2025/04/17 17:22:46 by asalo            ###   ########.fr       */
+/*   Updated: 2025/04/18 20:21:38 by asalo            ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -85,7 +85,7 @@ void ScalarConverter::convert(const std::string &literal) {
         return ;
     }
 
-    // Check if it's a pseudo literal first. define better for int etc
+    // Check if it's a pseudo literal first.
     if (isPseudoLiteral(literal)) {
         double value = 0;
         if (literal == "-inf" || literal == "-inff")

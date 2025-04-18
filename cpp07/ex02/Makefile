@@ -1,7 +1,7 @@
-NAME = convert
+NAME = array
 CC = g++
-CFLAGS = -Wall -Wextra -Werror -std=c++20
-SRCS = main.cpp ScalarConverter.cpp
+CFLAGS = -Wall -Wextra -Werror -std=c++23
+SRCS = main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
@@ -22,6 +22,6 @@ re: fclean all
 
 run: re
 	clear
-	./tester.sh
+	./$(NAME)
 
 .PHONY: all clean fclean re run

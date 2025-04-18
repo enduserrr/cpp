@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Base.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalo <asalo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 11:44:27 by asalo             #+#    #+#             */
-/*   Updated: 2025/04/17 17:15:59 by asalo            ###   ########.fr       */
+/*   Updated: 2025/04/18 20:18:39 by asalo            ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -30,7 +30,7 @@ Base* generate(void) {
 
 void identify(Base* p) {
     if (p == nullptr) {
-        std::cout << "nullptr ..." << std::endl;
+        std::cout << "it's a nullptr..." << std::endl;
         return ;
     }
     if (dynamic_cast<A*>(p)) {

@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 18:10:03 by asalo             #+#    #+#             */
-/*   Updated: 2025/04/18 13:49:42 by asalo            ###   ########.fr       */
+/*   Updated: 2025/04/18 20:13:22 by asalo            ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -19,18 +19,16 @@ int main() {
     original.s2 = "Bad";
     original.number = 404;
 
-    // Original
     std::cout << "Original Data:" << std::endl;
     std::cout << "address: " << &original << std::endl;
     std::cout << "s1: " << original.s1 << std::endl;
     std::cout << "n: " << original.number << std::endl;
     std::cout << "s2: " << original.s2 << std::endl;
 
-    // Serialize and deserialize
     uintptr_t serialized = Serializer::serialize(&original);
     Serializer::Data* deserialized = Serializer::deserialize(serialized);
 
-    // Deserialized values
+
     std::cout << "\nDeserialized Data:" << std::endl;
     std::cout << "address: " << deserialized << std::endl;
     std::cout << "s1: " << deserialized->s1 << std::endl;

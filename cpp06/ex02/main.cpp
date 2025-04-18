@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalo <asalo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 12:04:42 by asalo             #+#    #+#             */
-/*   Updated: 2025/04/15 10:40:20 by asalo            ###   ########.fr       */
+/*   Updated: 2025/04/18 20:19:56 by asalo            ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -18,8 +18,7 @@ int main() {
     // Seed random number gen
     std::srand(static_cast<unsigned int>(std::time(NULL)));
 
-    // Test with pointers
-    std::cout << WB << "Testing with pointers:" << RES << std::endl;
+    std::cout << WB << "Test with pointers:" << RES << std::endl;
     for (int i = 0; i < 4; i++) {
         Base* ptr = generate();
         std::cout << "Object " << i + 1 << ": ";
@@ -27,8 +26,7 @@ int main() {
         delete ptr;
     }
 
-    // Test with references
-    std::cout << WB << "\nTesting with references:" << RES << std::endl;
+    std::cout << WB << "\nTest with references:" << RES << std::endl;
     for (int i = 0; i < 4; i++) {
         Base* ptr = generate();
         std::cout << "Object " << i + 1 << ": ";
@@ -45,27 +43,26 @@ int main() {
     identify(*testPtr);
 
     // Known type verification
-    std::cout << WB << "\nKnown type verification" << RES << std::endl;
+    std::cout << WB << "\nType verification" << RES << std::endl;
     A aObj;
     B bObj;
     C cObj;
-    std::cout << "Known A object - pointer: ";
+    std::cout << "Known object A (ptr): ";
     identify(&aObj);
-    std::cout << "Known A object - reference: ";
+    std::cout << "Known object A (ref): ";
     identify(aObj);
-    std::cout << "Known B object - pointer: ";
+    std::cout << "Known object B (ptr): ";
     identify(&bObj);
-    std::cout << "Known B object - reference: ";
+    std::cout << "Known object B (ref): ";
     identify(bObj);
-    std::cout << "Known C object - pointer: ";
+    std::cout << "Known object C (ptr): ";
     identify(&cObj);
-    std::cout << "Known C object - reference: ";
+    std::cout << "Known object C (ref): ";
     identify(cObj);
 
-    // Null pointer handling
-    std::cout << WB << "\nNull pointer handling" << RES << std::endl;
+    std::cout << WB << "\nNULL:" << RES << std::endl;
     Base* nullPtr = NULL;
-    std::cout << "Null pointer identify: ";
+    std::cout << "nullptr identify: ";
     identify(nullPtr);
 
     delete testPtr;
