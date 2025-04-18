@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalo <asalo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 18:10:03 by asalo             #+#    #+#             */
-/*   Updated: 2025/04/15 10:36:05 by asalo            ###   ########.fr       */
+/*   Updated: 2025/04/18 13:49:42 by asalo            ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -15,15 +15,15 @@
 
 int main() {
     Serializer::Data original;
-    original.s1 = "Helo";
-    original.n = 41;
-    original.s2 = "World";
+    original.s1 = "Good";
+    original.s2 = "Bad";
+    original.number = 404;
 
     // Original
     std::cout << "Original Data:" << std::endl;
     std::cout << "address: " << &original << std::endl;
     std::cout << "s1: " << original.s1 << std::endl;
-    std::cout << "n: " << original.n << std::endl;
+    std::cout << "n: " << original.number << std::endl;
     std::cout << "s2: " << original.s2 << std::endl;
 
     // Serialize and deserialize
@@ -34,7 +34,7 @@ int main() {
     std::cout << "\nDeserialized Data:" << std::endl;
     std::cout << "address: " << deserialized << std::endl;
     std::cout << "s1: " << deserialized->s1 << std::endl;
-    std::cout << "n: " << deserialized->n << std::endl;
+    std::cout << "n: " << deserialized->number << std::endl;
     std::cout << "s2: " << deserialized->s2 << std::endl;
 
     // Check pointer equality

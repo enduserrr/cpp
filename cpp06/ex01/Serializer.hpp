@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Serializer.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalo <asalo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 18:33:09 by asalo             #+#    #+#             */
-/*   Updated: 2025/04/15 10:35:52 by asalo            ###   ########.fr       */
+/*   Updated: 2025/04/18 13:48:13 by asalo            ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -26,7 +26,7 @@ class Serializer {
     public:
         typedef struct Data {
             std::string s1;
-            int n;
+            int number;
             std::string s2;
         } Data;
 
