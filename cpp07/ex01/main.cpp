@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalo <asalo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 11:50:35 by asalo             #+#    #+#             */
-/*   Updated: 2025/04/17 12:06:36 by asalo            ###   ########.fr       */
+/*   Updated: 2025/04/19 13:27:48 by asalo            ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -33,30 +33,26 @@ static void	upperCase(std::string &str)
 int main(void)
 {
 	int arr[] = {1, 2, 3, 4, 5};
-	std::string str[] = {"test", "case", "for", "42", "kocaeli"};
+	std::string str[] = {"this", "is", "truly", "it,", "dang"};
 
-	std::cout << REV_BLD_GREY << "#**************#" << RES << std::endl;
-	std::cout << "Before iter :" << std::endl;
-	std::cout << "Integer array	= " << std::endl;
+	std::cout << REV_BLD_GREY << "\nBEFORE ITER:" << RES << std::endl;
+	std::cout << "Int array= ";
 	for (size_t i = 0; i < 5; i++)
-		std::cout << arr[i] << " " << std::endl;
+		std::cout << arr[i] << "|";
 	std::cout << std::endl;
-	std::cout << "String array = " << std::endl;
+	std::cout << "String array: ";
 	for (size_t i = 0; i < 5; i++)
-		std::cout << str[i] << " " << std::endl;
+		std::cout << str[i] << " ";
 	std::cout << std::endl;
-	std::cout << REV_BLD_GREY << "#**************#" << RES << std::endl;
 	iter(arr, 5, plusTen);
 	iter(str, 5, upperCase);
-	std::cout << "After iter :" << std::endl;
-	std::cout << "Integer array = " << std::endl;
+	std::cout << REV_BLD_GREY << "\nAFTER ITER:" << RES << std::endl;
+	std::cout << "Int array= ";
 	for (size_t i = 0; i < 5; i++)
-		std::cout << arr[i] << " " << std::endl;
+		std::cout << arr[i] << "|";
 	std::cout << std::endl;
-	std::cout << "String array = " << std::endl;
+	std::cout << "String array: ";
 	for (size_t i = 0; i < 5; i++)
-		std::cout << str[i] << " " << std::endl;
-	std::cout << std::endl;
-	std::cout << REV_BLD_GREY << "#**************#" << RES << std::endl;
+		std::cout << str[i] << " ";
 	return (0);
 }

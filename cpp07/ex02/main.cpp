@@ -1,160 +1,106 @@
-// #include <iostream>
+/******************************************************************************/
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/19 11:54:03 by asalo             #+#    #+#             */
+/*   Updated: 2025/04/19 12:14:12 by asalo            #   ####.fr       */
+/*                                                                            */
+/******************************************************************************/
+
 #include "Array.hpp"
+#include <iostream>
+#include <string>
+#include <cstdlib>
+#include <ctime>
 
-// #define MAX_VAL 750
-// int main(int, char**)
-// {
-//     Array<int> numbers(MAX_VAL);
-//     int* mirror = new int[MAX_VAL];
-//     srand(time(NULL));
-//     for (int i = 0; i < MAX_VAL; i++)
-//     {
-//         const int value = rand();
-//         numbers[i] = value;
-//         mirror[i] = value;
-//     }
-//     //SCOPE
-//     {
-//         Array<int> tmp = numbers;
-//         Array<int> test(tmp);
-//     }
+#define WB "\033[1;97m"
+#define RES "\033[0m"
+#define GREY_B "\033[1;90m"
 
-//     for (int i = 0; i < MAX_VAL; i++)
-//     {
-//         if (mirror[i] != numbers[i])
-//         {
-//             std::cerr << "didn't save the same value!!" << std::endl;
-//             return 1;
-//         }
-//     }
-//     try
-//     {
-//         numbers[-2] = 0;
-//     }
-//     catch(const std::exception& e)
-//     {
-//         std::cerr << e.what() << '\n';
-//     }
-//     try
-//     {
-//         numbers[MAX_VAL] = 0;
-//     }
-//     catch(const std::exception& e)
-//     {
-//         std::cerr << e.what() << '\n';
-//     }
+#define MAX_VAL 50
 
-//     for (int i = 0; i < MAX_VAL; i++)
-//     {
-//         numbers[i] = rand();
-//     }
-//     delete [] mirror;//
-//     return 0;
-// }
+template <typename T>
+void printArrayInfo(const std::string& name, const Array<T>& arr) {
+    std::cout << name << " [Size: " << arr.size() << "] = { ";
+    if (arr.size() == 0) {
+        std::cout << "(empty)";
+    } else {
+        for (unsigned int i = 0; i < arr.size(); ++i) {
+            std::cout << arr[i] << (i == arr.size() - 1 ? "" : ", ");
+        }
+    }
+    std::cout << " }" << std::endl;
+}
 
-#define GREEN "\033[1;32m"
-#define YELLOW "\033[1;33m"
-#define CYAN "\033[1;36m"
-#define BLUE "\033[1;34m"
-#define WHITE "\033[1;37m"
-#define RED "\033[1;31m"
-#define RESET "\033[0m"
 
-int main()
-{
-	Array<int>			array1;
-	Array<int>			array2(5);
-	Array<std::string>	array3(3);
-	Array<float>		array4(2);
-	std::cout << BLUE"==================================================="RESET << std::endl << std::endl;
-	std::cout << YELLOW"Initial values of the arrays"RESET << std::endl << std::endl;
-	std::cout << BLUE"==================================================="RESET << std::endl;
-	std::cout << CYAN"Array 1 <int> size	 : "WHITE << array1.size() << RESET << std::endl;
-	std::cout << CYAN"Array 1 <int> content	 : "WHITE;
-	for (unsigned int i = 0; i < array1.size(); i++)
-		std::cout << array1[i] << " ";
-	std::cout << RESET << std::endl;
-	std::cout << BLUE"==================================================="RESET << std::endl;
-	std::cout << CYAN"Array 2 <int> size	 : "WHITE << array2.size() << RESET << std::endl;
-	std::cout << CYAN"Array 2 <int> content	 : "WHITE;
-	for (unsigned int i = 0; i < array2.size(); i++)
-		std::cout << array2[i] << " ";
-	std::cout << RESET << std::endl;
-	std::cout << BLUE"==================================================="RESET << std::endl;
-	std::cout << CYAN"Array 3 <string> size	 : "WHITE << array3.size() << RESET << std::endl;
-	std::cout << CYAN"Array 3 <string> content : "WHITE;
-	for (unsigned int i = 0; i < array3.size(); i++)
-		std::cout << array3[i] << " ";
-	std::cout << RESET << std::endl;
-	std::cout << BLUE"==================================================="RESET << std::endl;
-	std::cout << CYAN"Array 4 <float> size	 : "WHITE << array4.size() << RESET << std::endl;
-	std::cout << CYAN"Array 4 <float> content	 : "WHITE;
-	for (unsigned int i = 0; i < array4.size(); i++)
-		std::cout << array4[i] << " ";
-	std::cout << RESET << std::endl;
-	std::cout << BLUE"==================================================="RESET << std::endl << std::endl;
-	std::cout << YELLOW"Assigning values to arrays"RESET << std::endl << std::endl;
-	std::cout << BLUE"==================================================="RESET << std::endl;
-	for (unsigned int i = 0; i < array1.size(); i++)
-		array1[i] = i + 10;
-	for (unsigned int i = 0; i < array2.size(); i++)
-		array2[i] = i + 40;
-	array3[0] = "abakirca";
-	array3[1] = "42";
-	array3[2] = "Kocaeli";
-	array4[0] = 3.14;
-	array4[1] = 31.69;
-	std::cout << CYAN"Array 1 <int> size	 : "WHITE << array1.size() << RESET << std::endl;
-	std::cout << CYAN"Array 1 <int> content	 : "WHITE;
-	for (unsigned int i = 0; i < array1.size(); i++)
-		std::cout << array1[i] << " ";
-	std::cout << RESET << std::endl;
-	std::cout << BLUE"==================================================="RESET << std::endl;
-	std::cout << CYAN"Array 2 <int> size	 : "WHITE << array2.size() << RESET << std::endl;
-	std::cout << CYAN"Array 2 <int> content	 : "WHITE;
-	for (unsigned int i = 0; i < array2.size(); i++)
-		std::cout << array2[i] << " ";
-	std::cout << RESET << std::endl;
-	std::cout << BLUE"==================================================="RESET << std::endl;
-	std::cout << CYAN"Array 3 <string> size	 : "WHITE << array3.size() << RESET << std::endl;
-	std::cout << CYAN"Array 3 <string> content : "WHITE;
-	for (unsigned int i = 0; i < array3.size(); i++)
-		std::cout << array3[i] << " ";
-	std::cout << RESET << std::endl;
-	std::cout << BLUE"==================================================="RESET << std::endl;
-	std::cout << CYAN"Array 4 <float> size	 : "WHITE << array4.size() << RESET << std::endl;
-	std::cout << CYAN"Array 4 <float> content	 : "WHITE;
-	for (unsigned int i = 0; i < array4.size(); i++)
-		std::cout << array4[i] << " ";
-	std::cout << RESET << std::endl;
-	std::cout << BLUE"==================================================="RESET << std::endl << std::endl;
-	std::cout << YELLOW"Copy constructor and assignment operator"RESET << std::endl << std::endl;
-	std::cout << BLUE"==================================================="RESET << std::endl;
-	Array<std::string>	copy(array3);
-	Array<float>		assign;
-	assign = array4;
-	std::cout << CYAN"Copy <string> size	 : "WHITE << copy.size() << RESET << std::endl;
-	std::cout << CYAN"Copy <string> content	 : "WHITE;
-	for (unsigned int i = 0; i < copy.size(); i++)
-		std::cout << copy[i] << " ";
-	std::cout << RESET << std::endl;
-	std::cout << BLUE"==================================================="RESET << std::endl;
-	std::cout << CYAN"Assign <float> size	 : "WHITE << assign.size() << RESET << std::endl;
-	std::cout << CYAN"Assign <float> content	 : "WHITE;
-	for (unsigned int i = 0; i < assign.size(); i++)
-		std::cout << assign[i] << " ";
-	std::cout << RESET << std::endl;
-	std::cout << BLUE"==================================================="RESET << std::endl << std::endl;
-	std::cout << YELLOW"Exception handling"RESET << std::endl << std::endl;
-	std::cout << BLUE"==================================================="RESET << std::endl << std::endl;
-	try
-	{
-		std::cout << CYAN"Trying to access index 3 of array 1 <int> : "WHITE << array1[3] << RESET << std::endl;
-	}
-	catch (std::exception &e)
-	{
-		std::cerr << RED << e.what() << RESET << std::endl;
-	}
+int main() {
+    std::srand(static_cast<unsigned int>(std::time(0)));
 
-	return (0);
+    std::cout << RES << WB << "# DEFAULT CONSTRUCTION #" << GREY_B << std::endl;
+    Array<int> a0;
+    printArrayInfo("a0", a0);
+
+    std::cout << RES << WB << "\n# SIZE CONSTRUCTION #" << GREY_B << std::endl;
+    Array<int> a1(5);
+    for (unsigned int i = 0; i < a1.size(); ++i) {
+        a1[i] = std::rand() % MAX_VAL;
+    }
+    printArrayInfo("a1", a1);
+
+    Array<std::string> a_str(3);
+    a_str[0] = "alpha";
+    a_str[1] = "beta";
+    a_str[2] = "gamma";
+    printArrayInfo("a_str", a_str);
+
+    std::cout << RES << WB << "\n# COPY & ASSIGNEMENT #" << GREY_B << std::endl;
+    Array<int> a2 = a1;
+    printArrayInfo("a2 (copy of a1)", a2);
+
+    Array<int> a3;
+    a3 = a1;
+    printArrayInfo("a3 (assigned from a1)", a3);
+
+    std::cout << RES << "... modifying copies .." << GREY_B << std::endl;
+    a2[0] = 1000;
+    a3[1] = 2000;
+    printArrayInfo("a1 (original)", a1);
+    printArrayInfo("a2 (modified copy)", a2);
+    printArrayInfo("a3 (modified assignment)", a3);
+
+
+    std::cout << RES << WB << "\n# SUBSCRIPT OPERATOR & BOUNDS #" << GREY_B << std::endl;
+    std::cout << "a1[2] = " << a1[2] << std::endl;
+
+    try {
+        std::cout << "Accessing a1[5] (out of bounds)... ";
+        a1[5] = 99;
+    } catch (const std::exception& e) {
+        std::cerr << "Caught Exception: " << e.what() << std::endl;
+    }
+
+    try {
+        std::cout << "Accessing a0[0] (empty array)... ";
+        a0[0] = 99;
+    } catch (const std::exception& e) {
+        std::cerr << "Caught Exception: " << e.what() << std::endl;
+    }
+
+     std::cout << RES << WB << "\n# CONSTANT #" << GREY_B << std::endl;
+     const Array<int> const_a1 = a1;
+     printArrayInfo("const_a1", const_a1);
+     std::cout << "const_a1[1] = " << const_a1[1] << std::endl;
+     // const_a1[1] = 5; // <-- Compile Error if uncommented
+
+    std::cout << RES << WB << WB << "\n# new int() vs new int[1] #" << GREY_B << std::endl;
+    int * tip_a = new int(); // Value-initialization
+    std::cout << "*tip_a (new int()): " << *tip_a << std::endl;
+    delete tip_a;
+    Array<int> tip_b(1); // Default-initialization (int might be uninitialized)
+    std::cout << "tip_b[0] (new int[1]): " << tip_b[0] << " (value depends on compiler/memory state)" << std::endl;
+
+    return 0;
 }

@@ -6,82 +6,80 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 12:47:49 by asalo             #+#    #+#             */
-/*   Updated: 2025/04/18 12:48:01 by asalo            ###   ########.fr       */
+/*   Updated: 2025/04/19 11:55:27 by asalo            ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
+#ifndef ARRAY_TPP
+#define ARRAY_TPP
+
 #include "Array.hpp"
+#include <iostream>
 
 template <typename T>
-Array<T>::Array()
-{
-	arr = new T[0];
-	arr_size = 0;
+Array<T>::Array() : _array(NULL), _array_size(0) {}
+
+template <typename T>
+Array<T>::Array(unsigned int n) : _array_size(n) {
+    if (n == 0) {
+        _array = NULL;
+    } else {
+        _array = new T[n]; // Default initialization
+        // For value-initialization (e.g., zeroing ints): new T[n]();
+    }
 }
 
 template <typename T>
-Array<T>::Array(unsigned int n)
-{
-	arr = new T[n];
-	arr_size = n;
-	for (unsigned int i = 0; i < arr_size; i++)
-	{
-		arr[i] = T();
-	}
+Array<T>::Array(const Array<T>& src) : _array(NULL), _array_size(0) {
+    *this = src; // Delegate to assignment operator
 }
 
 template <typename T>
-Array<T>::Array(Array const &other)
-{
-	arr = new T[other.arr_size];
-	arr_size = other.arr_size;
-	for (unsigned int i = 0; i < arr_size; i++)
-	{
-		arr[i] = other.arr[i];
-	}
+Array<T>& Array<T>::operator=(const Array<T>& src) {
+    if (this != &src) {
+        delete[] _array;
+        _array_size = src._array_size;
+        if (_array_size == 0) {
+            _array = NULL;
+        } else {
+            _array = new T[_array_size];
+            for (unsigned int i = 0; i < _array_size; ++i) {
+                _array[i] = src._array[i];
+            }
+        }
+    }
+    return *this;
 }
 
 template <typename T>
-Array<T>::~Array()
-{
-	delete[] arr;
+Array<T>::~Array() {
+    delete[] _array;
 }
 
 template <typename T>
-Array<T> &Array<T>::operator=(Array const &other)
-{
-	if (this == &other)
-	{
-		return (*this);
-	}
-	delete[] arr;
-	arr = new T[other.arr_size];
-	arr_size = other.arr_size;
-	for (unsigned int i = 0; i < arr_size; i++)
-	{
-		arr[i] = other.arr[i];
-	}
-	return (*this);
+T& Array<T>::operator[](unsigned int index) {
+    if (index >= _array_size) {
+        throw OutOfBoundsException();
+    }
+    return _array[index];
 }
 
 template <typename T>
-T &Array<T>::operator[](unsigned int i)
-{
-	if (i >= arr_size)
-	{
-		throw OutOfBoundsException();
-	}
-	return (arr[i]);
+const T& Array<T>::operator[](unsigned int index) const {
+    if (index >= _array_size) {
+        throw OutOfBoundsException();
+    }
+    return _array[index];
 }
 
 template <typename T>
-unsigned int Array<T>::size() const
-{
-	return (arr_size);
+unsigned int Array<T>::size() const {
+    return _array_size;
 }
 
 template <typename T>
-const char *Array<T>::OutOfBoundsException::what() const throw()
-{
-	return ("Index is out of bounds");
+const char* Array<T>::OutOfBoundsException::what() const throw() {
+    return "Index is out of bounds";
 }
+
+#endif
