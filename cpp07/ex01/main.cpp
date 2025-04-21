@@ -6,11 +6,11 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 11:50:35 by asalo             #+#    #+#             */
-/*   Updated: 2025/04/21 14:04:24 by asalo            ###   ########.fr       */
+/*   Updated: 2025/04/21 18:43:12 by asalo            ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "Iter.hpp"
+#include "iter.hpp"
 #include <iostream>
 
 #define REV_BLD_GREY    "\033[1;90;107m"
@@ -50,5 +50,6 @@ int main() {
 	std::cout << "String array: ";
 	for (size_t i = 0; i < 5; i++)
 		std::cout << str[i] << " ";
+	std::cout << std::endl;
 	return (0);
 }

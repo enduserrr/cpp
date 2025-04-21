@@ -6,12 +6,12 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 09:15:12 by asalo             #+#    #+#             */
-/*   Updated: 2025/04/19 13:16:20 by asalo            ###   ########.fr       */
+/*   Updated: 2025/04/21 18:43:23 by asalo            ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include <iostream>
-#include "Whatever.hpp"
+#include "whatever.hpp"
 
 #define REV_BLD_GREY    "\033[1;90;107m"
 #define RES             "\033[0m"
@@ -26,8 +26,8 @@ int main( void ) {
     std::cout << "min( a, b ) = " << ::min( a, b ) << std::endl;
     std::cout << "max( a, b ) = " << ::max( a, b ) << std::endl;
     
-    std::string c = "chaine1";
-    std::string d = "chaine2";
+    std::string c = "ab";
+    std::string d = "bb";
     ::swap(c, d);
     std::cout << "c = " << c << ", d = " << d << std::endl;
     std::cout << "min( c, d ) = " << ::min( c, d ) << std::endl;
