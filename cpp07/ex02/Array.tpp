@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 12:47:49 by asalo             #+#    #+#             */
-/*   Updated: 2025/04/19 11:55:27 by asalo            ###   ########.fr       */
+/*   Updated: 2025/04/21 13:36:35 by asalo            ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -24,14 +24,13 @@ Array<T>::Array(unsigned int n) : _array_size(n) {
     if (n == 0) {
         _array = NULL;
     } else {
-        _array = new T[n]; // Default initialization
-        // For value-initialization (e.g., zeroing ints): new T[n]();
+        _array = new T[n]; // Value-init (zeroing ints)
     }
 }
 
 template <typename T>
 Array<T>::Array(const Array<T>& src) : _array(NULL), _array_size(0) {
-    *this = src; // Delegate to assignment operator
+    *this = src;
 }
 
 template <typename T>

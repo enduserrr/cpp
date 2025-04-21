@@ -39,11 +39,12 @@ void printArrayInfo(const std::string& name, const Array<T>& arr) {
 int main() {
     std::srand(static_cast<unsigned int>(std::time(0)));
 
-    std::cout << RES << WB << "# DEFAULT CONSTRUCTION #" << GREY_B << std::endl;
+    std::cout << RES << WB << "# DEFAULT CONSTRUCTION" << GREY_B << std::endl;
     Array<int> a0;
     printArrayInfo("a0", a0);
+    std::cout << "__________________________________________________________" << std::endl;
 
-    std::cout << RES << WB << "\n# SIZE CONSTRUCTION #" << GREY_B << std::endl;
+    std::cout << RES << WB << "# SIZE CONSTRUCTION" << GREY_B << std::endl;
     Array<int> a1(5);
     for (unsigned int i = 0; i < a1.size(); ++i) {
         a1[i] = std::rand() % MAX_VAL;
@@ -55,8 +56,9 @@ int main() {
     a_str[1] = "beta";
     a_str[2] = "gamma";
     printArrayInfo("a_str", a_str);
+    std::cout << "__________________________________________________________" << std::endl;
 
-    std::cout << RES << WB << "\n# COPY & ASSIGNEMENT #" << GREY_B << std::endl;
+    std::cout << RES << WB << "# COPY & ASSIGNEMENT" << GREY_B << std::endl;
     Array<int> a2 = a1;
     printArrayInfo("a2 (copy of a1)", a2);
 
@@ -70,9 +72,10 @@ int main() {
     printArrayInfo("a1 (original)", a1);
     printArrayInfo("a2 (modified copy)", a2);
     printArrayInfo("a3 (modified assignment)", a3);
+    std::cout << "__________________________________________________________" << std::endl;
 
 
-    std::cout << RES << WB << "\n# SUBSCRIPT OPERATOR & BOUNDS #" << GREY_B << std::endl;
+    std::cout << RES << WB << "# SUBSCRIPT OPERATOR & BOUNDS" << GREY_B << std::endl;
     std::cout << "a1[2] = " << a1[2] << std::endl;
 
     try {
@@ -88,19 +91,22 @@ int main() {
     } catch (const std::exception& e) {
         std::cerr << "Caught Exception: " << e.what() << std::endl;
     }
+    std::cout << "__________________________________________________________" << std::endl;
 
-     std::cout << RES << WB << "\n# CONSTANT #" << GREY_B << std::endl;
-     const Array<int> const_a1 = a1;
-     printArrayInfo("const_a1", const_a1);
-     std::cout << "const_a1[1] = " << const_a1[1] << std::endl;
-     // const_a1[1] = 5; // <-- Compile Error if uncommented
+    std::cout << RES << WB << "# CONSTANT" << GREY_B << std::endl;
+    const Array<int> const_a1 = a1;
+    printArrayInfo("const_a1", const_a1);
+    std::cout << "const_a1[1] = " << const_a1[1] << std::endl;
+    // const_a1[1] = 5; // <-- Compile Error if uncommented
+    std::cout << "__________________________________________________________" << std::endl;
 
-    std::cout << RES << WB << WB << "\n# new int() vs new int[1] #" << GREY_B << std::endl;
+    std::cout << RES << WB << WB << "# new int() vs new int[1]" << GREY_B << std::endl;
     int * tip_a = new int(); // Value-initialization
     std::cout << "*tip_a (new int()): " << *tip_a << std::endl;
     delete tip_a;
     Array<int> tip_b(1); // Default-initialization (int might be uninitialized)
     std::cout << "tip_b[0] (new int[1]): " << tip_b[0] << " (value depends on compiler/memory state)" << std::endl;
+    std::cout << "__________________________________________________________" << std::endl;
 
     return 0;
 }

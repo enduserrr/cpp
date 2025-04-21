@@ -1,4 +1,9 @@
 # CPP06 - CASTS
+* Static_cast: For compile-time known, related conversions (potentially unsafe downcasts).
+
+* Dynamic_cast: For runtime checked, safe pointer/reference conversions within a polymorphic hierarchy.
+
+* Reinterpret_cast: For low-level, unsafe bit reinterpretation between (potentially unrelated) types.
 
 ## Ex00 - Scalar Converter
 
@@ -30,4 +35,3 @@ Demonstrates a way to treat memory address as a plain numerical value and conver
 
 ## Ex02
 Dynamic type identification using polymorphism and dynamic_cast. A pointer or reference to a base class object, determines the actual derived class type (A, B, C) of the object at runtime.
-

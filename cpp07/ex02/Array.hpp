@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 12:25:30 by asalo             #+#    #+#             */
-/*   Updated: 2025/04/19 12:00:00 by asalo            ###   ########.fr       */
+/*   Updated: 2025/04/21 13:43:24 by asalo            ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -15,7 +15,6 @@
 
 #include <iostream>
 #include <exception>
-#include <cstdlib> 
 
 template <typename T>
 class Array {
@@ -28,7 +27,6 @@ class Array {
         ~Array();
 
         Array(unsigned int n);
-        // explicit Array(unsigned int n);
         Array(const Array& src);
         Array& operator=(const Array& src);
 
