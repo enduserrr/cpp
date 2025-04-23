@@ -97,7 +97,6 @@ int main() {
     const Array<int> const_a1 = a1;
     printArrayInfo("const_a1", const_a1);
     std::cout << "const_a1[1] = " << const_a1[1] << std::endl;
-    // const_a1[1] = 5; // <-- Compile Error if uncommented
     std::cout << "__________________________________________________________" << std::endl;
 
     std::cout << RES << WB << WB << "# new int() vs new int[1]" << GREY_B << std::endl;
@@ -110,3 +109,45 @@ int main() {
 
     return 0;
 }
+
+/* #define MAX_VAL 750
+int main(int, char**) {
+    Array<int> numbers(MAX_VAL);
+    int* mirror = new int[MAX_VAL];
+    srand(time(NULL));
+    for (int i = 0; i < MAX_VAL; i++) {
+        const int value = rand();
+        numbers[i] = value;
+        mirror[i] = value;
+    }
+    //SCOPE
+    {
+        Array<int> tmp = numbers;
+        Array<int> test(tmp);
+    }
+
+    for (int i = 0; i < MAX_VAL; i++) {
+        if (mirror[i] != numbers[i]) {
+            std::cerr << "didn't save the same value!!" << std::endl;
+            return 1;
+        }
+    }
+    try {
+        numbers[-2] = 0;
+    }
+    catch(const std::exception& e) {
+        std::cerr << e.what() << '\n';
+    }
+    try {
+        numbers[MAX_VAL] = 0;
+    }
+    catch(const std::exception& e) {
+        std::cerr << e.what() << '\n';
+    }
+
+    for (int i = 0; i < MAX_VAL; i++) {
+        numbers[i] = rand();
+    }
+    delete [] mirror;//
+    return 0;
+} */

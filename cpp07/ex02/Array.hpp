@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 12:25:30 by asalo             #+#    #+#             */
-/*   Updated: 2025/04/21 13:43:24 by asalo            ###   ########.fr       */
+/*   Updated: 2025/04/23 10:17:38 by asalo            ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -31,7 +31,7 @@ class Array {
         Array& operator=(const Array& src);
 
 
-        T& operator[](uint size);
+        T& operator[](unsigned int index);
         const T& operator[](unsigned int index) const;
         uint size() const;
 
