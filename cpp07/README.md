@@ -16,8 +16,3 @@ A generic function template with three args: a ptr to an array address, array le
 
 ## Ex02 Array
 Subscript operator allows objects of a class to be accessed using array like syntax at a given point specified with a key or an index.
-
-## FIX
-* new line ex01
-* complex types ex00
-* filenames
