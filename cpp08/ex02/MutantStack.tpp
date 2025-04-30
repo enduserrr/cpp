@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 10:17:23 by asalo             #+#    #+#             */
-/*   Updated: 2025/04/22 10:29:06 by asalo            ###   ########.fr       */
+/*   Updated: 2025/04/26 15:01:28 by asalo            ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -25,7 +25,9 @@ MutantStack<T>::MutantStack(const MutantStack& src) {
 
 template <typename T>
 MutantStack<T>& MutantStack<T>::operator=(const MutantStack<T>& src) {
-    (void)src;
+    if (this != &src) {
+        std::stack<T>::operator=(src);
+    }
     return *this;
 }
 

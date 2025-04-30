@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 08:27:01 by asalo             #+#    #+#             */
-/*   Updated: 2025/04/22 08:47:25 by asalo            ###   ########.fr       */
+/*   Updated: 2025/04/30 12:41:20 by asalo            ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -71,4 +71,12 @@ unsigned int Span::longestSpan() {
 
 const char *Span::AddNumberException::what() const throw() {
     return "(Can't add number)";
+}
+
+const char *Span::InvalArgException::what() const throw() {
+    return "(Invalid iterator range)";
+}
+
+const char *Span::OutOfRangeException::what() const throw() {
+    return "(Range filling would go out of range of the Span instance)";
 }

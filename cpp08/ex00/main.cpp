@@ -6,17 +6,15 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 11:55:57 by asalo             #+#    #+#             */
-/*   Updated: 2025/04/20 12:26:40 by asalo            ###   ########.fr       */
+/*   Updated: 2025/04/26 14:38:37 by asalo            ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
-#include "EasyFind.hpp"
+#include "easyfind.hpp"
 #include <vector>
 #include <list>
 #include <deque>
 #include <iostream>
-#include <exception> // To catch exceptions
-#include <iterator>
 
 #define WB "\033[1;97m"
 #define RED "\033[1;91m"
@@ -24,12 +22,10 @@
 #define RES "\033[0m"
 #define GC "\033[3;90m"
 
-// Helper function to demonstrate finding and optionally modifying
 template <typename T>
 void testContainer(T& container, int valueToFind, const std::string& containerName) {
     std::cout << WB << "# Testing " << containerName << " #" << RES << std::endl;
     std::cout << "Container elements: ";
-    // C++23 range-based for loop (using auto const&)
     for (auto const& elem : container) {
         std::cout << GC << elem << " ";
     }
@@ -50,7 +46,6 @@ void testContainer(T& container, int valueToFind, const std::string& containerNa
     } catch (...) { // non-standard exceptions
         std::cerr << RED << "FAIL: enknown exception type." << RES << std::endl;
     }
-    //  std::cout << "-----------------------------" << std::endl << std::endl;
      std::cout << "__________________________________________________" << std::endl << std::endl;
 }
 
@@ -76,12 +71,10 @@ int main() {
     testContainer(myDeque, 200, "std::deque (value exists)"); // OK
     testContainer(myDeque, 400, "std::deque (value missing)"); // KO
 
-    // empty vector & list
     std::vector<int> emptyVector;
-    testContainer(emptyVector, 1, "Empty std::vector"); // KO
-
+    testContainer(emptyVector, 1, "Empty vector"); // KO
     std::list<int> emptyList;
-    testContainer(emptyList, 0, "Empty std::list"); // KO
+    testContainer(emptyList, 0, "Empty list"); // KO
 
     return 0;
 }

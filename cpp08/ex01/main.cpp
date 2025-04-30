@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 08:27:08 by asalo             #+#    #+#             */
-/*   Updated: 2025/04/22 09:04:14 by asalo            ###   ########.fr       */
+/*   Updated: 2025/04/30 12:50:44 by asalo            ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -17,6 +17,11 @@
 #define RES     "\033[0m"
 #define GREY_B  "\033[1;90m"
 
+/**
+ * @brief   Span class is a container able to store a fixed max number (N) of ints.
+ *          Shortest Span = The smallest difference between any two nbs withing the span.
+ *          Longest Span = The largest difference between any two nbs within the span.
+ */
 int main() {
     std::cout << WB << "# 5 SPANS" << std::endl;
     Span sp = Span(5);
@@ -52,6 +57,21 @@ int main() {
     std::cout << "Shortest Span: " << RES GREY_B << sp2.shortestSpan() << RES << std::endl;
     std::cout << "Longest Span: " << RES GREY_B << sp2.longestSpan() << RES << std::endl;
     std::cout << RES << "____________________________________________________" << std::endl;
+
+    std::cout << WB << "# BIG SPAN" << RES << std::endl;
+    try {
+        Span bigSpan(11000);
+        std::vector<int> toAdd;
+        for (int i = 0; i < 11000; ++i) { // More efficient than calling addNumber 11000 times
+            toAdd.push_back(i * 2); // Example: add even numbers
+        }
+        bigSpan.multipleAdd< std::vector<int> >(toAdd.begin(), toAdd.end());
+        std::cout << "Shortest Span: " << RES GREY_B << bigSpan.shortestSpan() << RES << std::endl;
+        std::cout << "Longest Span: " << RES GREY_B << bigSpan.longestSpan() << RES << std::endl;
+        } catch (const std::exception& e) {
+        std::cerr << "Error during Big span test: " << e.what() << std::endl;
+    }
+    std::cout << "____________________________________________________" << std::endl;
 
     return 0;
 }
