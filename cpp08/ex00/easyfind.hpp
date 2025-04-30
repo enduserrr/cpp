@@ -6,14 +6,14 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 11:57:17 by asalo             #+#    #+#             */
-/*   Updated: 2025/04/26 14:36:31 by asalo            ###   ########.fr       */
+/*   Updated: 2025/04/30 16:38:22 by asalo            ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #ifndef EASYFIND_HPP
 #define EASYFIND_HPP
 
-#include <algorithm>    // std::find
+#include <algorithm>    // std::find (STL algo)
 #include <iterator>     // Container iterators
 #include <exception>
 #include <stdexcept>

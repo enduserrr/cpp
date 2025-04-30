@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 08:18:32 by asalo             #+#    #+#             */
-/*   Updated: 2025/04/30 12:42:03 by asalo            ###   ########.fr       */
+/*   Updated: 2025/04/30 17:38:55 by asalo            ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -28,11 +28,29 @@ class Span {
         Span& operator=(const Span& src);
         ~Span();
 
-        void addNumber(int num);
-        void addRange(int* begin, int* end);
-
         unsigned int shortestSpan();
         unsigned int longestSpan();
+
+        void addNumber(int num);
+        
+        /**
+         * @brief   std::distance:      Counts the nb of elements between iterator begin and end.
+         *          difference_type:    The data type 'std::distance' returns, defined by the iterator itself (iterator_traits)
+         *
+         *          => Ensures safe handling of errors (signed negative int types)
+         */
+        template <typename InputIterator>
+        void multiAdd(InputIterator begin, InputIterator end) {
+            // 'iterator_traits' to get the 'difference_type'
+            typename std::iterator_traits<InputIterator>::difference_type count = std::distance(begin, end);
+            if (count < 0) {
+                throw InvalArgException();
+            }
+            if (this->_numbers.size() + static_cast<unsigned int>(count) > this->_N) {
+                throw OutOfRangeException();
+            }
+            this->_numbers.insert(this->_numbers.end(), begin, end);
+        };
 
         class AddNumberException : public std::exception {
             public:
@@ -46,20 +64,6 @@ class Span {
             public:
                 const char* what() const throw();
         };
-
-        template <typename T>
-        void multipleAdd(typename T::iterator begin, typename T::iterator end) {
-            typename T::iterator::difference_type count = std::distance(begin, end);
-            if (count < 0) {
-                throw InvalArgException();
-            }
-            if (this->_numbers.size() + static_cast<unsigned int>(count) > this->_N) {
-                throw OutOfRangeException();
-            }
-            for (typename T::iterator it = begin; it != end; ++it) {
-                this->addNumber(*it);
-            }
-        }
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 08:27:01 by asalo             #+#    #+#             */
-/*   Updated: 2025/04/30 12:41:20 by asalo            ###   ########.fr       */
+/*   Updated: 2025/04/30 17:51:13 by asalo            ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -40,13 +40,6 @@ void Span::addNumber(int num) {
     _numbers.push_back(num);
 }
 
-void Span::addRange(int* begin, int* end) {
-    if (_numbers.size() + (end - begin) > _N) {
-        throw AddNumberException();
-    }
-    _numbers.insert(_numbers.end(), begin, end);
-}
-
 unsigned int Span::shortestSpan() {
     if (_numbers.size() < 2) {
         throw AddNumberException();
@@ -65,7 +58,7 @@ unsigned int Span::shortestSpan() {
 unsigned int Span::longestSpan() {
     if (_numbers.size() < 2) {
         throw AddNumberException();
-    }
+    } //max_elem STL algo
     return *std::max_element(_numbers.begin(), _numbers.end()) - *std::min_element(_numbers.begin(), _numbers.end());
 }
 

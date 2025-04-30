@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 11:55:57 by asalo             #+#    #+#             */
-/*   Updated: 2025/04/26 14:38:37 by asalo            ###   ########.fr       */
+/*   Updated: 2025/04/30 17:57:27 by asalo            ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -41,9 +41,9 @@ void testContainer(T& container, int valueToFind, const std::string& containerNa
                   << std::distance(container.begin(), it) << std::endl;
     } catch (const NotFoundException& e) {
         std::cerr << RED << "FAIL: exception: " RES << e.what() << std::endl;
-    } catch (const std::exception& e) { //std exception
+    } catch (const std::exception& e) {
         std::cerr << RED << "FAIL: enexpected standard exception: " << RES << e.what() << std::endl;
-    } catch (...) { // non-standard exceptions
+    } catch (...) {
         std::cerr << RED << "FAIL: enknown exception type." << RES << std::endl;
     }
      std::cout << "__________________________________________________" << std::endl << std::endl;

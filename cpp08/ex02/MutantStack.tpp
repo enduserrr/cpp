@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 10:17:23 by asalo             #+#    #+#             */
-/*   Updated: 2025/04/26 15:01:28 by asalo            ###   ########.fr       */
+/*   Updated: 2025/04/30 17:54:20 by asalo            ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -36,12 +36,12 @@ MutantStack<T>::~MutantStack() {}
 
 template <typename T>
 typename MutantStack<T>::iterator MutantStack<T>::begin() {
-    return this->c.begin();
+    return this->c.begin(); // STL container member func returning iterator
 }
 
 template <typename T>
 typename MutantStack<T>::iterator MutantStack<T>::end() {
-    return this->c.end();
+    return this->c.end(); // STL container member func returning iterator
 }
 
 template <typename T>

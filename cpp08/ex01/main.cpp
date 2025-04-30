@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 08:27:08 by asalo             #+#    #+#             */
-/*   Updated: 2025/04/30 12:50:44 by asalo            ###   ########.fr       */
+/*   Updated: 2025/04/30 17:37:45 by asalo            ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -18,7 +18,7 @@
 #define GREY_B  "\033[1;90m"
 
 /**
- * @brief   Span class is a container able to store a fixed max number (N) of ints.
+ * @brief   Span class used as a container to store a fixed max number (N) of ints.
  *          Shortest Span = The smallest difference between any two nbs withing the span.
  *          Longest Span = The largest difference between any two nbs within the span.
  */
@@ -35,37 +35,31 @@ int main() {
     std::cout << "____________________________________________________" << std::endl;
 
 
-    std::cout << WB << "# A LOT OF SPANS" << RES << std::endl;
-    Span largeSpan(10);
-    for (int i = 0; i < 10; i++) {
-        largeSpan.addNumber(i);
-    }
-    std::cout << "Shortest Span: " << RES GREY_B << largeSpan.shortestSpan() << RES << std::endl;
-    std::cout << "Longest Span: " << RES GREY_B << largeSpan.longestSpan() << RES << std::endl;
-    std::cout << "____________________________________________________" << std::endl;
-
-    std::cout << WB << "# RANGE\n" << RES GREY_B;
+    std::cout << WB << "# ADD NUMBERS TO SPAN" << RES << std::endl;
+    Span sp2(8); // Span with capacity for initial + added numbers
+    sp2.addNumber(10);
+    sp2.addNumber(11);
+    sp2.addNumber(50);
+    std::cout << GREY_B << "Before adding range" << RES << std::endl;
+    std::cout << "Shortest Span: " << RES GREY_B << sp2.shortestSpan() << RES << std::endl;
+    std::cout << "Longest Span: " << RES GREY_B << sp2.longestSpan() << RES << std::endl;
+    std::cout << std::endl;
     int arr[] = {1, 2, 3, 4, 5};
-    for (int i = 0; arr[i++];) {
-        std::cout << arr[i] << " ";
-    }
-    std::cout << RES << "\n____________________________________________________" << std::endl;
-
-    std::cout << WB << "# ADD TO SPAN\n" << RES;
-    Span sp2(5);
-    sp2.addRange(arr, arr + 5);
+    sp2.multiAdd(arr, arr + 5);
+    std::cout << GREY_B << "After adding range" << RES << std::endl;
     std::cout << "Shortest Span: " << RES GREY_B << sp2.shortestSpan() << RES << std::endl;
     std::cout << "Longest Span: " << RES GREY_B << sp2.longestSpan() << RES << std::endl;
     std::cout << RES << "____________________________________________________" << std::endl;
 
+
     std::cout << WB << "# BIG SPAN" << RES << std::endl;
     try {
-        Span bigSpan(11000);
+        Span bigSpan(100000);
         std::vector<int> toAdd;
-        for (int i = 0; i < 11000; ++i) { // More efficient than calling addNumber 11000 times
-            toAdd.push_back(i * 2); // Example: add even numbers
+        for (int i = 0; i < 99999; ++i) {
+            toAdd.push_back(i);// More efficient than calling addNumber 11000 times
         }
-        bigSpan.multipleAdd< std::vector<int> >(toAdd.begin(), toAdd.end());
+        bigSpan.multiAdd(toAdd.begin(), toAdd.end());
         std::cout << "Shortest Span: " << RES GREY_B << bigSpan.shortestSpan() << RES << std::endl;
         std::cout << "Longest Span: " << RES GREY_B << bigSpan.longestSpan() << RES << std::endl;
         } catch (const std::exception& e) {
