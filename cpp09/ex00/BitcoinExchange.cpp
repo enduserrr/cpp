@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:21:12 by asalo             #+#    #+#             */
-/*   Updated: 2025/05/07 10:05:07 by asalo            ###   ########.fr       */
+/*   Updated: 2025/05/07 12:28:47 by asalo            ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -32,12 +32,13 @@ BitcoinExchange::BitcoinExchange() {}
 
 BitcoinExchange::~BitcoinExchange() {}
 
-BitcoinExchange::BitcoinExchange(const BitcoinExchange& src) {
-    (void)src;
-}
+BitcoinExchange::BitcoinExchange(const BitcoinExchange& src) : _exchangeRates(src._exchangeRates) {}
 
-BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& other) {
-    (void)other;
+BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& src) {
+    if (this == &src)
+        return *this;
+    this->_exchangeRates = src._exchangeRates;
+
     return *this;
 }
 
@@ -141,6 +142,6 @@ double BitcoinExchange::getRateForDate(const std::string& date) const {
     }
 
     // Case 3: No exact match, use the closest earlier date.
-    --it; // Move to the previous element (guaranteed to exist because it != begin())
+    --it; // Move to the previous element (will exist because: it != begin())
     return it->second;
 }

@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:21:24 by asalo             #+#    #+#             */
-/*   Updated: 2025/04/23 10:36:55 by asalo            ###   ########.fr       */
+/*   Updated: 2025/05/07 12:28:55 by asalo            ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -22,8 +22,8 @@ class BitcoinExchange {
 private:
     std::map<std::string, double> _exchangeRates;
 
-    BitcoinExchange(const BitcoinExchange& other); // Prevent
-    BitcoinExchange& operator=(const BitcoinExchange& other); // Prevent
+    BitcoinExchange(const BitcoinExchange& src);
+    BitcoinExchange& operator=(const BitcoinExchange& src);
 
     void loadDatabase(const std::string& filename);
     bool isValidDate(const std::string& date) const;
@@ -45,15 +45,6 @@ public:
       public:
         DateNotFoundException(const std::string& msg) : std::runtime_error(msg) {}
     };
-
-    // class DateNotFoundException : public std::exception {
-    //     public:
-    //         const char *what() const throw();
-    // };
-    // class DatabaseLoadException : public std::exception {
-    //     public:
-    //         const char *what() const throw();
-    // };
 };
 
 #endif

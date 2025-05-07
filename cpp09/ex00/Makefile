@@ -22,6 +22,6 @@ re: fclean all
 
 run: re
 	clear
-	./$(NAME) data.csv
+	./$(NAME) input.csv
 
 .PHONY: all clean fclean re run

@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 18:30:10 by asalo             #+#    #+#             */
-/*   Updated: 2025/05/06 18:39:01 by asalo            ###   ########.fr       */
+/*   Updated: 2025/05/07 12:30:25 by asalo            ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -25,7 +25,6 @@
 #include <sstream>   // For std::stringstream
 #include <stdexcept> // For std::runtime_error
 
-// Class to implement Ford-Johnson (Merge-Insert Sort) algorithm
 class PmergeMe {
     private:
         std::vector<int> _unsortedSequence;

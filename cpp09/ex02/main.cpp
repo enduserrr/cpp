@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 18:44:48 by asalo             #+#    #+#             */
-/*   Updated: 2025/05/06 18:45:06 by asalo            ###   ########.fr       */
+/*   Updated: 2025/05/07 12:30:13 by asalo            ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -19,7 +19,6 @@ int main(int argc, char **argv) {
         std::cerr << "Error: No input sequence provided. Usage: ./PmergeMe <positive_integer_sequence>" << std::endl;
         return 1;
     }
-    // Check for "-h" or "--help" (optional, not required by subject)
 /*     std::string first_arg = argv[1];
     if (first_arg == "-h" || first_arg == "--help") {
         std::cout << "Usage: ./PmergeMe <positive_integer_sequence>" << std::endl;
