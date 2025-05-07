@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:19:32 by asalo             #+#    #+#             */
-/*   Updated: 2025/04/23 11:50:01 by asalo            ###   ########.fr       */
+/*   Updated: 2025/05/02 18:10:14 by asalo            ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -15,59 +15,71 @@
 #include <sstream>
 #include <string>
 #include <cstdlib> // strtod
-#include <limits> // Numeric_limits
+#include <exception> // std::exception
+#include <algorithm> // std::find
 #include "BitcoinExchange.hpp"
 
-// Helper function to trim leading/trailing whitespace
+#define RED     "\033[0;91m"
+#define GB      "\033[1;90m"
+#define GC      "\033[3;90m"
+#define WB      "\u001b[41;1m"
+#define RES     "\033[0m"
+#define YELLOW  "\033[0;93m"
+
 static std::string trim(const std::string& str) {
     size_t first = str.find_first_not_of(" \t\n\r\f\v");
     if (std::string::npos == first) {
-        return str;
+        return "";
     }
     size_t last = str.find_last_not_of(" \t\n\r\f\v");
     return str.substr(first, (last - first + 1));
 }
 
-// Date validation function
 bool isValidInputDate(const std::string& date) {
      if (date.length() != 10 || date[4] != '-' || date[7] != '-') {
         return false;
     }
     int year, month, day;
-    char dash1, dash2;
-    std::istringstream ss(date);
-    ss >> year >> dash1 >> month >> dash2 >> day;
-    if (ss.fail() || !ss.eof() || dash1 != '-' || dash2 != '-') {
-         return false;
-     }
-    if (month < 1 || month > 12 || day < 1 || day > 31) return false;
+    // Use sscanf for potentially more robust parsing than istringstream here
+    if (sscanf(date.c_str(), "%d-%d-%d", &year, &month, &day) != 3) {
+        return false;
+    }
+
+    if (year < 0 || month < 1 || month > 12 || day < 1 || day > 31) {
+        return false;
+    }
+
     if (month == 2) {
         bool isLeap = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
         if (day > (isLeap ? 29 : 28)) return false;
     } else if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30) {
         return false;
     }
+
+    if (year < 2009)
+        return false;
+
     return true;
 }
 
-// Value validation function (using the original 0-1000 requirement)
-// If you truly want to ignore the 1000 limit, remove or comment out that check.
 bool isValidInputValue(const std::string& valueStr, double& value) {
+    if (valueStr.empty()) {
+         return false;
+    }
+
     char* end;
     value = std::strtod(valueStr.c_str(), &end);
+
+    // Check if conversion failed or if there were trailing non-numeric chars (excluding whitespace handled by trim)
     if (end == valueStr.c_str() || *end != '\0') {
-        // Don't print error here, let the main loop handle "bad input" generally if needed
-        // Or print a specific format error:
-        // std::cerr << "Error: Invalid number format in input => " << valueStr << std::endl;
-        return false; // Indicate failure without printing the required error messages
-    }
-    if (value < 0) {
-        std::cerr << "Error: not a positive number." << std::endl;
         return false;
     }
-    // Re-instated the requirement check. Remove if you must ignore it.
-    if (value > 100000) {
-        std::cerr << "Error: too large a number." << std::endl;
+    if (value < 0) {
+        std::cerr << RED << "Error" << RES GC << ": not a positive number." << RES << std::endl;
+        return false;
+    }
+    if (value > 1000) {
+        std::cerr << RED << "Error" << RES GC << ": too large a number." << RES << std::endl;
         return false;
     }
     return true;
@@ -75,106 +87,103 @@ bool isValidInputValue(const std::string& valueStr, double& value) {
 
 
 int main(int argc, char* argv[]) {
-    // --- MODIFICATION: Check for 3 arguments ---
-    if (argc != 3) {
-        std::cerr << "Usage: " << argv[0] << " <input_file.csv> <output_file.csv>" << std::endl;
-        // Maintain original error style if preferred:
-        // std::cerr << "Error: incorrect number of arguments." << std::endl;
+    if (argc != 2) {
+        std::cerr <<  RED << "Error" << RES GC << ": Usage: " << argv[0] << " <input_file.txt>" << RES << std::endl;
+        // std::cerr << "Error: could not open file." << std::endl;
         return 1;
     }
-
-    // --- Get filenames ---
     const char* inputFilename = argv[1];
-    const char* outputFilename = argv[2];
+    const std::string dbFilename = "data.csv";
 
     BitcoinExchange btcDb;
     try {
-        // Assuming the database is still hardcoded 'data.csv'
-        btcDb.initDatabase("data.csv");
+        btcDb.initDatabase(dbFilename);
     } catch (const std::exception& e) {
-        std::cerr << e.what() << std::endl; // Errors to stderr
+        std::cerr << RED << "Error initializing data" << RES GC << ": " << e.what() << RES << std::endl;
         return 1;
     }
 
     std::ifstream inputFile(inputFilename);
     if (!inputFile.is_open()) {
-        std::cerr << "Error: could not open input file: " << inputFilename << std::endl; // Errors to stderr
+        std::cerr << RED << "Error" << RES GC << ": could not open file." << RES << std::endl;
         return 1;
     }
-
-    // --- MODIFICATION: Open output file ---
-    std::ofstream outputFile(outputFilename);
-    if (!outputFile.is_open()) {
-        std::cerr << "Error: could not open output file: " << outputFilename << std::endl; // Errors to stderr
-        inputFile.close(); // Close the already opened input file
-        return 1;
-    }
-
 
     std::string line;
-    std::getline(inputFile, line); // Read header line from input file
-
-    // Basic check for expected header - print error to stderr if wrong
-    if (trim(line) != "date | value") {
-        std::cerr << "Warning: Input file header mismatch or missing. Expected 'date | value'." << std::endl;
-        // Decide whether to stop or continue processing anyway
-        // For robustness, might process line if it looks like data, or just warn and continue
-    }
-
-    // --- MODIFICATION: Write header to output file? (Optional) ---
-    // outputFile << "date | value | result" << std::endl; // Example if you want a header in the output
-
+    bool firstLine = true; // Flag to check the header
 
     while (std::getline(inputFile, line)) {
-        std::stringstream ss(line);
-        std::string dateStr;
-        // separator is implicitly the '|' used by getline
-        std::string valueStr;
-        double value;
-
-        // Use '|' as the delimiter for the input file
-        if (!(std::getline(ss, dateStr, ',') && std::getline(ss, valueStr))) {
-            if (!line.empty() && trim(line).length() > 0) { // Avoid errors on empty lines
-                std::cerr << "Error: bad input => " << trim(line) << std::endl; // Errors to stderr
+        std::string trimmedLine = trim(line);
+        if (trimmedLine.empty()) {// Skip empty lines
+            continue;
+        }
+        if (firstLine) {
+            firstLine = false;
+            if (trimmedLine != "date | value") {
+                std::cerr << YELLOW << "Warning" << RES GC << ": Input file header invalid or missing. Expected 'date | value'" << RES << std::endl;
+                continue;
             }
             continue;
         }
 
-        dateStr = trim(dateStr);
-        valueStr = trim(valueStr);
+        std::string dateStr;
+        std::string valueStr;
+        size_t delimiterPos = trimmedLine.find('|');
 
-        // Validate date - errors to stderr
+        if (delimiterPos == std::string::npos) {
+             std::cerr << RED << "Error" << RES GC << ": bad input => " << trimmedLine << RES << std::endl;
+             continue;
+        }
+
+        dateStr = trim(trimmedLine.substr(0, delimiterPos));
+        if (delimiterPos + 1 < trimmedLine.length()) {
+             valueStr = trim(trimmedLine.substr(delimiterPos + 1));
+        } else {
+             valueStr = "";
+        }
         if (!isValidInputDate(dateStr)) {
-            std::cerr << "Error: bad input => " << dateStr << std::endl; // Errors to stderr
+            std::cerr << RED << "Error" << RES GC << ": bad input => " << trimmedLine << RES << std::endl;
             continue;
         }
-
-        // Validate value - errors printed inside function to stderr
+        double value;
         if (!isValidInputValue(valueStr, value)) {
-            // If isValidInputValue returns false, it should have already printed the specific error
-            // If isValidInputValue was changed *not* to print errors, you'd print a general one here.
-            continue;
-        }
+            // isValidInputValue prints specific errors (negative, too large)
+            // If it returned false for other reasons (e.g., non-numeric, empty),
+            // we might need a general "bad input" error here, but let's see
+            // if the current structure covers the example cases.
+            // Re-checking the example: "bad input" seems used for format errors.
+            // Let's refine: if validation fails *and* no specific error was printed,
+            // print the general "bad input".
+            // We need isValidInputValue to signal *why* it failed.
+            // Simpler approach: If date is valid but value is not (for any reason other than negative/too large),
+            // it's likely a format issue.
+            // Let's stick to the current logic: isValidInputValue prints specific errors.
+            // If it returns false without printing (e.g., bad format), we need to catch that.
 
+            // Let's modify isValidInputValue slightly to not print for format errors.
+            // *Correction*: The current isValidInputValue *doesn't* print for format errors.
+            // So, if it returns false, and the value wasn't < 0 or > 1000 (which print errors),
+            // then it must be a format error.
+             if (value >= 0 && value <= 1000) { // Check if it wasn't the range errors
+                 std::cerr << RED << "Error" << RES GC << ": bad input => " << trimmedLine << RES << std::endl;
+             }
+            continue; // Skip processing this line
+        }
 
         try {
             double rate = btcDb.getRateForDate(dateStr);
             double result = value * rate;
 
-            // --- MODIFICATION: Write result to output file ---
-            outputFile << dateStr << " => " << value << " = " << result << std::endl;
+            std::cout << dateStr << " => " << value << " = " << result << std::endl;
 
         } catch (const BitcoinExchange::DateNotFoundException& e) {
-             // Output consistent with example for dates before DB start
-             std::cerr << "Error: bad input => " << dateStr << std::endl; // Errors to stderr
+             std::cerr << RED << "Error" << RES GC ": bad input => " << dateStr << RES << std::endl;
         }
          catch (const std::exception& e) {
-            // Catch other potential errors - errors to stderr
-            std::cerr << "Error processing " << dateStr << ": " << e.what() << std::endl;
+            std::cerr << RED "Error processing line '" << RES GC << trimmedLine << "': " << e.what() << RES << std::endl;
         }
     }
 
     inputFile.close();
-    outputFile.close(); // Close the output file
     return 0;
 }

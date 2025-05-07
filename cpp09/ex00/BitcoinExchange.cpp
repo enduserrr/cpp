@@ -6,7 +6,7 @@
 /*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 10:21:12 by asalo             #+#    #+#             */
-/*   Updated: 2025/04/23 10:36:29 by asalo            ###   ########.fr       */
+/*   Updated: 2025/05/07 10:05:07 by asalo            ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -18,7 +18,6 @@
 #include <limits> // For numeric_limits
 #include <algorithm> // For std::find
 
-// Helper function to trim leading/trailing whitespace
 static std::string trim(const std::string& str) {
     size_t first = str.find_first_not_of(" \t\n\r\f\v");
     if (std::string::npos == first) {
@@ -33,9 +32,14 @@ BitcoinExchange::BitcoinExchange() {}
 
 BitcoinExchange::~BitcoinExchange() {}
 
-// Private copy constructor and assignment operator to prevent copying
-BitcoinExchange::BitcoinExchange(const BitcoinExchange& other) { (void)other; }
-BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& other) { (void)other; return *this; }
+BitcoinExchange::BitcoinExchange(const BitcoinExchange& src) {
+    (void)src;
+}
+
+BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& other) {
+    (void)other;
+    return *this;
+}
 
 
 bool BitcoinExchange::isValidDate(const std::string& date) const {
@@ -66,12 +70,9 @@ bool BitcoinExchange::isValidDate(const std::string& date) const {
         return false;
     }
 
-    // Basic check for very early dates potentially before Bitcoin existed
-    if (year < 2009) {
-         // Technically valid date, but outside typical Bitcoin range.
-         // The getRate logic will handle dates before the first DB entry.
-    }
-
+    if (year < 2009)
+        return false;
+        
     return true;
 }
 
@@ -91,15 +92,6 @@ void BitcoinExchange::loadDatabase(const std::string& filename) {
     std::string line;
     std::getline(dbFile, line); // Skip header
 
-    if (trim(line) != "date,exchange_rate") {
-         // Handle case where header might be missing or different,
-         // but for this exercise assume it's present and correct.
-         // Rewind or process the first line if needed, but simpler to assume skip.
-         // If the first line was actually data:
-         // dbFile.seekg(0, std::ios::beg);
-         // std::cerr << "Warning: Database header missing or incorrect." << std::endl;
-    }
-
 
     while (std::getline(dbFile, line)) {
         std::stringstream ss(line);
@@ -112,9 +104,6 @@ void BitcoinExchange::loadDatabase(const std::string& filename) {
              rateStr = trim(rateStr);
             if (isValidDate(dateStr) && isValidDbRate(rateStr, rateValue)) {
                 _exchangeRates[dateStr] = rateValue;
-            } else {
-                 // Optionally warn about invalid lines in DB
-                 // std::cerr << "Warning: Invalid database line skipped: " << line << std::endl;
             }
         }
     }
@@ -151,17 +140,7 @@ double BitcoinExchange::getRateForDate(const std::string& date) const {
         throw DateNotFoundException("Error: no data available for or before this date => " + date);
     }
 
-    // Case 3: No exact match, need the closest *earlier* date.
-    // lower_bound gave us the first element *greater* than date (or end()).
-    // We need the element just before it.
+    // Case 3: No exact match, use the closest earlier date.
     --it; // Move to the previous element (guaranteed to exist because it != begin())
     return it->second;
 }
-
-// const char *BitcoinExchange::DateNotFoundException::what() const throw() {
-//     return "Grade is too high";
-// }
-
-// const char *BitcoinExchange::DatabaseLoadException::what() const throw() {
-//     return "Grade is too low";
-// }
