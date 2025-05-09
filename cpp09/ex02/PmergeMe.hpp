@@ -1,22 +1,9 @@
-/******************************************************************************/
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   PmergeMe.hpp                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/06 18:30:10 by asalo             #+#    #+#             */
-/*   Updated: 2025/05/07 12:30:25 by asalo            ###   ########.fr       */
-/*                                                                            */
-/******************************************************************************/
-
 #ifndef PMERGEME_HPP
 #define PMERGEME_HPP
 
 #include <iostream>
 #include <vector>
 #include <deque>
-#include <string>
 #include <utility> // For std::pair
 #include <algorithm> // For std::sort, std::lower_bound, std::distance
 #include <limits>    // For std::numeric_limits
@@ -24,6 +11,11 @@
 #include <iomanip>   // For std::fixed, std::setprecision
 #include <sstream>   // For std::stringstream
 #include <stdexcept> // For std::runtime_error
+
+#define GB      "\033[0;92m"
+#define WB      "\u001b[1;97m"
+#define RES     "\033[0m"
+
 
 class PmergeMe {
     private:
@@ -34,7 +26,7 @@ class PmergeMe {
 
         void fordJohnsonSort(IntVector& container);
         void makePairs(const IntVector& S, PairVector& pairs, int& straggler, bool& hasStraggler);
-        struct ComparePairsByLargerVec { // Helper struct for sorting pairs by their second element
+        struct ComparePairsByLargerVec { // Helper struct for sorting pairs by their second eleme
             bool operator()(const std::pair<int, int>& a, const std::pair<int, int>& b) const {
                 return a.second < b.second;
             }
@@ -49,7 +41,7 @@ class PmergeMe {
 
         void fordJohnsonSort(IntDeque& container);
         void makePairs(const IntDeque& S, PairDeque& pairs, int& straggler, bool& hasStraggler);
-        struct ComparePairsByLargerDeq { // Helper struct for sorting pairs by their second element
+        struct ComparePairsByLargerDeq { // Helper struct for sorting pairs by their second eleme
             bool operator()(const std::pair<int, int>& a, const std::pair<int, int>& b) const {
                 return a.second < b.second;
             }

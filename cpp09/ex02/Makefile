@@ -22,6 +22,6 @@ re: fclean all
 
 run: re
 	clear
-	./$(NAME) "4" "9" "1" "3" "5" "2"
+	./$(NAME) "4" "9" "1" "3" "5" "2" "11" "111" "1111"
 
 .PHONY: all clean fclean re run

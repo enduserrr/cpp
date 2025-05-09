@@ -1,15 +1,3 @@
-/******************************************************************************/
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/06 17:55:49 by asalo             #+#    #+#             */
-/*   Updated: 2025/05/06 18:13:51 by asalo            ###   ########.fr       */
-/*                                                                            */
-/******************************************************************************/
-
 #include "RPN.hpp"
 #include <iostream>
 #include <string>
@@ -17,7 +5,7 @@
 
 int main(int argc, char* argv[]) {
     if (argc != 2) {
-        std::cerr << "Error" << std::endl;
+        std::cerr << "Error!" << std::endl;
         return 1;
     }
 
@@ -26,7 +14,7 @@ int main(int argc, char* argv[]) {
     try {
         int result = RPN::evaluate(expression);
         std::cout << result << std::endl;
-    } catch (const std::runtime_error& /*e*/) {
+    } catch (const std::runtime_error& ) {
         std::cerr << "Error" << std::endl;
         return 1;
     }

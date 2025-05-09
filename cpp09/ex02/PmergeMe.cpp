@@ -1,29 +1,13 @@
-/******************************************************************************/
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   PmergeMe.cpp                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/06 18:29:59 by asalo             #+#    #+#             */
-/*   Updated: 2025/05/06 18:48:50 by asalo            ###   ########.fr       */
-/*                                                                            */
-/******************************************************************************/
-
 #include "PmergeMe.hpp"
 
-// Constructor
 PmergeMe::PmergeMe() {}
 
-// Destructor
 PmergeMe::~PmergeMe() {}
 
-// Copy Constructor
 PmergeMe::PmergeMe(const PmergeMe& src) {
     *this = src;
 }
 
-// Assignment Operator
 PmergeMe& PmergeMe::operator=(const PmergeMe& rhs) {
     if (this != &rhs) {
         _unsortedSequence = rhs._unsortedSequence;
@@ -93,13 +77,15 @@ void PmergeMe::sortAndReport(int argc, char **argv) {
     double time_deq = static_cast<double>(end_deq - start_deq) * 1000000.0 / CLOCKS_PER_SEC;
 
     std::cout << std::fixed << std::setprecision(5);
-    std::cout << "Processing time for " << _unsortedSequence.size()
-              << " elements (std::vector) : " << time_vec << " us" << std::endl;
-    std::cout << "Processing time for " << _unsortedSequence.size()
-              << " elements (std::deque)  : " << time_deq << " us" << std::endl;
+    std::cout << GB << "Sorted " << _unsortedSequence.size()
+              << " elements (std::vector) in : " << RES << time_vec << " us" << std::endl;
+    std::cout << GB << "Sorted " << _unsortedSequence.size()
+              << " elements (std::deque) in  : " << RES << time_deq << " us" << std::endl;
 }
 
-// Top-level sort function for vector.
+/**
+ * @brief   Top-level sort function for vector.
+ */
 void PmergeMe::fordJohnsonSort(IntVector& container) {
     if (container.size() < 2) {
         return;
@@ -114,7 +100,9 @@ void PmergeMe::fordJohnsonSort(IntVector& container) {
     mergeAndInsert(container, pairs, straggler, hasStraggler);
 }
 
-// Groups elements into pairs (smaller, larger) and identifies a straggler if one exists.
+/**
+ * @brief   Groups elements into pairs (smaller, larger) and identifies a straggler if one exists.
+ */
 void PmergeMe::makePairs(const IntVector& S, PairVector& pairs, int& straggler, bool& hasStraggler) {
     hasStraggler = (S.size() % 2 != 0);
     size_t n = S.size();
@@ -194,7 +182,7 @@ void PmergeMe::binaryInsert(IntVector& chain, int value, typename IntVector::ite
  * @brief   Prints elements of an IntVector.
  */
 void PmergeMe::printSequence(const IntVector& c, const std::string& prefix, size_t limit) {
-    std::cout << prefix << " ";
+    std::cout << WB << prefix << " " << RES;
     size_t count = 0;
     for (typename IntVector::const_iterator it = c.begin(); it != c.end(); ++it) {
         if (count >= limit && c.size() > limit + 2) {
@@ -206,8 +194,6 @@ void PmergeMe::printSequence(const IntVector& c, const std::string& prefix, size
     }
     std::cout << std::endl;
 }
-
-// Degue =>
 
 /**
  * @brief   Top-level sort function for deque.
@@ -326,25 +312,25 @@ void PmergeMe::printSequence(const IntDeque& c, const std::string& prefix, size_
 std::vector<int> PmergeMe::generateJacobsthalInsertionSequence(size_t N) {
     if (N == 0) return std::vector<int>();
 
-    std::vector<int> j_numbers; // Jacobsthal numbers: J_0, J_1, J_2, ...
-    j_numbers.push_back(0); // J_0
-    j_numbers.push_back(1); // J_1
+    std::vector<int> j_numbers;
+    j_numbers.push_back(0);
+    j_numbers.push_back(1);
     while (j_numbers.back() < (int)N) { 
         size_t s = j_numbers.size();
         j_numbers.push_back(j_numbers[s-1] + 2 * j_numbers[s-2]);
         if (s > 30) break; // Safety break for very large N, though N <= 1500 here
     }
 
-    std::vector<int> indices; // 0-indexed for pendChain
+    std::vector<int> indices;
     indices.reserve(N);
-    std::vector<bool> inserted(N, false); // Keep track of what's added
+    std::vector<bool> inserted(N, false);
     size_t items_inserted_count = 0;
 
     for (size_t k = 2; k < j_numbers.size(); ++k) {
-        int current_j_val = j_numbers[k];    // e.g., J_2=1, J_3=3, J_4=5
-        int prev_j_val = j_numbers[k-1]; // e.g., J_1=1, J_2=1, J_3=3
+        int current_j_val = j_numbers[k];
+        int prev_j_val = j_numbers[k-1];
 
-        // Iterate downwards from current_j_val-1 to prev_j_val (0-indexed)
+        // Iterate downwards from current_j_val-1 to prev_j_val
         for (int pend_idx = current_j_val - 1; pend_idx >= prev_j_val; --pend_idx) {
             if (pend_idx < (int)N) { // Ensure index is within bounds of pendChain
                 if (!inserted[pend_idx]) { // Check if not already added (shouldn't happen with correct Jacobsthal groups)
@@ -354,7 +340,7 @@ std::vector<int> PmergeMe::generateJacobsthalInsertionSequence(size_t N) {
                 }
             }
         }
-        if (items_inserted_count == N) break; // All elements scheduled
+        if (items_inserted_count == N) break;
     }
     
     for (int pend_idx = N - 1; pend_idx >= 0; --pend_idx) {

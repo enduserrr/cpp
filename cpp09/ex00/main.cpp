@@ -1,15 +1,3 @@
-/******************************************************************************/
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/23 10:19:32 by asalo             #+#    #+#             */
-/*   Updated: 2025/05/02 18:10:14 by asalo            ###   ########.fr       */
-/*                                                                            */
-/******************************************************************************/
-
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -20,9 +8,7 @@
 #include "BitcoinExchange.hpp"
 
 #define RED     "\033[0;91m"
-#define GB      "\033[1;90m"
 #define GC      "\033[3;90m"
-#define WB      "\u001b[41;1m"
 #define RES     "\033[0m"
 #define YELLOW  "\033[0;93m"
 

@@ -1,15 +1,3 @@
-/******************************************************************************/
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   RPN.cpp                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: asalo <asalo@student.hive.fi>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/06 17:56:21 by asalo             #+#    #+#             */
-/*   Updated: 2025/05/06 18:22:48 by asalo            ###   ########.fr       */
-/*                                                                            */
-/******************************************************************************/
-
 #include "RPN.hpp"
 #include <stack>     // The chosen standard container (adapter)
 #include <sstream>   // For tokenizing the string

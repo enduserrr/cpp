@@ -22,6 +22,6 @@ re: fclean all
 
 run: re
 	clear
-	./$(NAME)
+	./$(NAME) "8 9 * 9 - 9 - 9 - 4 - 1 +"
 
 .PHONY: all clean fclean re run
