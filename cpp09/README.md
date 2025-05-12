@@ -10,7 +10,6 @@ A.k.a postfix notation
 * It's evaluated using a stack and eliminates the need for parentheses and operator precedence rules, simplifying parsing for computers.
 * **Example:** (3 + 4) * 5" becomes "3 4 + 5 *
 
-
 ## Ex02 PmergeMe
 Sorts a sequence of positive integers using merge-insert algorithm (Ford-Johnson algorithm) using two different containers comparing the sorting time of the two.
 
@@ -25,3 +24,8 @@ Sorts a sequence of positive integers using merge-insert algorithm (Ford-Johnson
 ### Jacobsthal Numbers
 * **Jacobsthal numbers** are an integer sequence defined by the recurrence relation: J(n) = J(n-1) + 2 * J(n-2), with initial values J(0) = 0 and J(1) = 1.
 * Appears often in combinatorial problems, like optimizing insertion points in Ford-Johnson sort algorithms.
+
+### Vector and Deque
+* **std::vector**: Elements are accessed and manipulated via random access iterators.
+* **std::deque**: Similar with added possibility of but with ability to use push_front for inserting s_1
+* Vector offers overall better performance with contiguous memory

@@ -15,7 +15,6 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& rhs) {
     return *this;
 }
 
-
 void PmergeMe::parseInput(int argc, char **argv) {
     _unsortedSequence.clear();
     for (int i = 1; i < argc; ++i) {
@@ -318,7 +317,7 @@ std::vector<int> PmergeMe::generateJacobsthalInsertionSequence(size_t N) {
     while (j_numbers.back() < (int)N) { 
         size_t s = j_numbers.size();
         j_numbers.push_back(j_numbers[s-1] + 2 * j_numbers[s-2]);
-        if (s > 30) break; // Safety break for very large N, though N <= 1500 here
+        if (s > 30) break; //J(30) = 357913941, int overflow
     }
 
     std::vector<int> indices;
@@ -330,9 +329,9 @@ std::vector<int> PmergeMe::generateJacobsthalInsertionSequence(size_t N) {
         int current_j_val = j_numbers[k];
         int prev_j_val = j_numbers[k-1];
 
-        // Iterate downwards from current_j_val-1 to prev_j_val
+        // Iterate down from current_j_val-1 to previous
         for (int pend_idx = current_j_val - 1; pend_idx >= prev_j_val; --pend_idx) {
-            if (pend_idx < (int)N) { // Ensure index is within bounds of pendChain
+            if (pend_idx < (int)N) { // index in bounds?
                 if (!inserted[pend_idx]) { // Check if not already added (shouldn't happen with correct Jacobsthal groups)
                     indices.push_back(pend_idx);
                     inserted[pend_idx] = true;
